@@ -109,9 +109,19 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 - **P-11** Sección Skills. Los niveles y metas quedaron **postergados** (Reunión 003): los campos `nivelActual` y `nivelMeta` existen en el esquema pero son opcionales y hoy van vacíos.
 - **P-12** Dominio propio (post-MVP).
 
-**Otros pendientes:** subir el repositorio a GitHub y conectar Vercel; completar `github` y `linkedin` en `src/site.ts`; definir el nombre final de la app de finanzas.
+**Otros pendientes:** completar `github` y `linkedin` en `src/site.ts`; definir el nombre final de la app de finanzas.
 
 **Punto de contenido abierto:** el título de la trayectoria dice "cuatro capas" pero la línea de tiempo muestra tres etapas. Hay que ajustar el título o nombrar las cuatro capas en la bajada.
+
+---
+
+## Despliegue
+
+- **Repositorio:** https://github.com/Juargo/Portafolio
+- **Vercel:** proyecto `portafolio` en el equipo `juargos-projects`, conectado al repositorio. Producción: https://portafolio-umber-gamma-88.vercel.app (subdominio provisional hasta P-12).
+- **Rama de producción:** `main`. Cada merge a `main` despliega a producción; cada PR y cada rama generan un deploy de preview.
+- **Preset de framework:** `"framework": "astro"` en `vercel.json`. Vercel no detectó Astro al crear el proyecto y lo dejó en "Other", que publica `public/` en vez de `dist/`; no hay que quitarlo.
+- **Versión de pnpm:** el proyecto tiene la variable `ENABLE_EXPERIMENTAL_COREPACK=1` en Production, Preview y Development. Con ella, Vercel usa la versión de `packageManager` en `package.json`; sin ella, elige pnpm 9 o 10 según el lockfile (ver ADR 0001).
 
 ---
 

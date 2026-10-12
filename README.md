@@ -5,11 +5,11 @@ Landing page de portafolio personal. Astro + Vercel, bilingüe ES/EN, tema Andr�
 ## Correr el proyecto
 
 ```bash
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # genera dist/
-npm run preview  # sirve dist/
-npm run check    # tipos y accesibilidad
+pnpm install
+pnpm dev          # http://localhost:4321
+pnpm build        # genera dist/
+pnpm preview      # sirve dist/
+pnpm check        # tipos y accesibilidad
 ```
 
 ## Dónde está cada cosa

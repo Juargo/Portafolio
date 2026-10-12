@@ -118,11 +118,11 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 ## Comandos
 
 ```bash
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # genera dist/
-npm run preview  # sirve dist/
-npm run check    # tipos y accesibilidad; debe quedar en 0 errores
+pnpm install
+pnpm dev          # http://localhost:4321
+pnpm build        # genera dist/
+pnpm preview      # sirve dist/
+pnpm check        # tipos y accesibilidad; debe quedar en 0 errores
 ```
 
-Antes de dar por terminado un cambio: `npm run build` y `npm run check` sin errores.
+Antes de dar por terminado un cambio: `pnpm build` y `pnpm check` sin errores.

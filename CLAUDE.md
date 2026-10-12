@@ -27,6 +27,8 @@ Las actas de reunión están en la bóveda de Obsidian, **fuera de este reposito
 - **Reunión 004** — backlog (P-01 … P-12), plan de 2 sprints, riesgos.
 - **Reunión 005** — cierre del Sprint 1.
 
+Las decisiones técnicas (arquitectura, herramientas) se registran como ADR en `doc/ADRs/`, dentro del repositorio.
+
 El proyecto se lleva con **Agile**: cada tanda de trabajo se decide en una reunión y queda registrada ahí. Si tomas una decisión de producto nueva, pide que se registre; no la entierres en el código.
 
 ---

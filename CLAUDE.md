@@ -27,6 +27,8 @@ Las actas de reunión están en la bóveda de Obsidian, **fuera de este reposito
 - **Reunión 004** — backlog (P-01 … P-12), plan de 2 sprints, riesgos.
 - **Reunión 005** — cierre del Sprint 1.
 
+Las decisiones técnicas (arquitectura, herramientas) se registran como ADR en `doc/ADRs/`, dentro del repositorio.
+
 El proyecto se lleva con **Agile**: cada tanda de trabajo se decide en una reunión y queda registrada ahí. Si tomas una decisión de producto nueva, pide que se registre; no la entierres en el código.
 
 ---
@@ -116,11 +118,11 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 ## Comandos
 
 ```bash
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # genera dist/
-npm run preview  # sirve dist/
-npm run check    # tipos y accesibilidad; debe quedar en 0 errores
+pnpm install
+pnpm dev          # http://localhost:4321
+pnpm build        # genera dist/
+pnpm preview      # sirve dist/
+pnpm check        # tipos y accesibilidad; debe quedar en 0 errores
 ```
 
-Antes de dar por terminado un cambio: `npm run build` y `npm run check` sin errores.
+Antes de dar por terminado un cambio: `pnpm build` y `pnpm check` sin errores.

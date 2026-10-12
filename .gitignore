@@ -6,3 +6,7 @@ dist/
 .env.production
 .DS_Store
 npm-debug.log*
+
+# Agent tooling
+.atl/
+pnpm-debug.log*

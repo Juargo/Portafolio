@@ -1,0 +1,104 @@
+---
+import { useTranslations } from '../i18n';
+import type { Locale } from '../site';
+
+interface Props {
+  lang: Locale;
+  titulo: string;
+  estado: 'idea' | 'diseno' | 'desarrollo' | 'publicado';
+  nota?: string;
+  descripcion: string;
+  stack: string[];
+  enlace?: string;
+  repo?: string;
+}
+
+const { lang, titulo, estado, nota, descripcion, stack, enlace, repo } = Astro.props;
+const t = useTranslations(lang);
+const estadoLabel = nota ? `${t.estado[estado]} · ${nota}` : t.estado[estado];
+---
+
+<article class="card stack">
+  <p class="estado" data-estado={estado}>
+    <span class="dot" aria-hidden="true"></span>{estadoLabel}
+  </p>
+  <h3>{titulo}</h3>
+  <p class="muted desc">{descripcion}</p>
+  {stack.length > 0 && (
+    <ul class="tags stack-list" aria-label={t.proyecto.stackLabel}>
+      {stack.map((item) => <li class="tech">{item}</li>)}
+    </ul>
+  )}
+  {(enlace || repo) && (
+    <p class="links">
+      {enlace && <a href={enlace}>{t.proyecto.ver}</a>}
+      {repo && <a href={repo}>{t.proyecto.repo}</a>}
+    </p>
+  )}
+</article>
+
+<style>
+  .card {
+    flex: 1 1 17.5rem;
+    min-width: 0;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    background: var(--nebula-dark);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .estado {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--star);
+  }
+
+  .estado[data-estado='idea'] {
+    color: var(--stardust);
+  }
+
+  .estado[data-estado='publicado'] {
+    color: var(--aurora);
+  }
+
+  .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: currentColor;
+    flex: none;
+  }
+
+  h3 {
+    font-size: var(--fs-h3);
+  }
+
+  .desc {
+    font-size: 0.9375rem;
+  }
+
+  .stack-list {
+    margin-top: auto;
+  }
+
+  .tech {
+    font-size: 0.8125rem;
+    color: var(--nebula);
+  }
+
+  .tech:not(:last-child)::after {
+    content: ' ·';
+    color: var(--border);
+  }
+
+  .links {
+    display: flex;
+    gap: 1.25rem;
+    font-size: var(--fs-small);
+  }
+</style>

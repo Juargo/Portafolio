@@ -1,0 +1,21 @@
+---
+// Raíz del sitio: salto inmediato al idioma por defecto.
+// En Vercel, vercel.json redirige antes de llegar aquí; esta página es el
+// respaldo para desarrollo local y para cualquier otro hosting estático.
+const destino = '/es/';
+const canonical = new URL(destino, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${destino}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={canonical} />
+    <title>Jorge Retamal — Desarrollador full stack</title>
+  </head>
+  <body>
+    <a href={destino}>Continuar al sitio</a>
+  </body>
+</html>

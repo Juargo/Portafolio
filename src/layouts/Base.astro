@@ -1,0 +1,51 @@
+---
+import '@fontsource/iosevka/latin-400.css';
+import '@fontsource/iosevka/latin-700.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations } from '../i18n';
+import type { Locale } from '../site';
+
+type SectionId = 'ahora' | 'servicio' | 'trayectoria' | 'skills';
+
+interface Props {
+  lang: Locale;
+  /** Idioma alternativo disponible; cuando llega, el header muestra el selector. */
+  altLang?: Locale;
+  /** Secciones presentes en la página, para la navegación. */
+  sections?: SectionId[];
+}
+
+const { lang, altLang, sections } = Astro.props;
+const t = useTranslations(lang);
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0b0a14" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={t.meta.locale} />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.nav.skip}</a>
+    <Header lang={lang} altLang={altLang} sections={sections} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

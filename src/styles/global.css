@@ -1,0 +1,199 @@
+/* ── Tema Andrómeda ───────────────────────────────────────── */
+:root {
+  /* Superficies */
+  --void: #0b0a14;
+  --nebula-dark: #14132a;
+  --border: #2c2a4a;
+  --divider: #1e1c38;
+
+  /* Texto */
+  --lavender: #e8e6f5;
+  --stardust: #9a97b8;
+
+  /* Acentos */
+  --nebula: #8b7cf6;
+  --star: #f2b66d;
+  --aurora: #5ec8c0;
+
+  /* Tipografía */
+  --font: 'Iosevka', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-display: clamp(2rem, 1.2rem + 3.6vw, 3.5rem);
+  --fs-h2: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
+  --fs-h3: 1.375rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  /* Ritmo */
+  --measure: 65ch;
+  --gutter: 1.5rem;
+  --max: 65rem;
+  --radius: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--lavender);
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+  max-width: var(--measure);
+}
+
+a {
+  color: var(--nebula);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--star);
+}
+
+:focus-visible {
+  outline: 2px solid var(--aurora);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Utilidades de composición ────────────────────────────── */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  padding-block: 3.5rem;
+  border-top: 1px solid var(--divider);
+  gap: 1.75rem;
+}
+
+.eyebrow {
+  color: var(--aurora);
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+}
+
+.lede {
+  color: var(--stardust);
+  font-size: 1.125rem;
+}
+
+.muted {
+  color: var(--stardust);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--nebula);
+  color: var(--void);
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: 0;
+  color: var(--void);
+}
+
+/* Botón principal: alto mínimo 44px para toque cómodo */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.625rem 1.5rem;
+  background: var(--nebula);
+  color: var(--void);
+  font-weight: 700;
+  font-family: inherit;
+  border: 1px solid var(--nebula);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: var(--star);
+  border-color: var(--star);
+  color: var(--void);
+}
+
+.btn-quiet {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.625rem 0.25rem;
+  text-decoration: none;
+}
+
+/* Fichas de tecnología */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tag {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.125rem 0.875rem;
+  font-size: var(--fs-small);
+  color: var(--lavender);
+}

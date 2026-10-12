@@ -1,0 +1,28 @@
+---
+interface Props {
+  /** Número de orden en la página; se calcula al renderizar, no se escribe a mano. */
+  n: number;
+  eyebrow: string;
+  title: string;
+  lede?: string;
+}
+
+const { n, eyebrow, title, lede } = Astro.props;
+const numero = String(n).padStart(2, '0');
+---
+
+<div class="heading stack">
+  <p class="eyebrow">{numero} / {eyebrow}</p>
+  <h2>{title}</h2>
+  {lede && <p class="muted">{lede}</p>}
+</div>
+
+<style>
+  .heading {
+    gap: 0.25rem;
+  }
+
+  h2 {
+    font-size: var(--fs-h2);
+  }
+</style>

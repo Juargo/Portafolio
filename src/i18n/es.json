@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "Jorge Retamal — Desarrollador full stack",
+    "description": "Desarrollador full stack en Santiago de Chile. 14 años de experiencia en soporte, QA, DevOps y desarrollo. Disponible para proyectos freelance.",
+    "locale": "es_CL"
+  },
+  "nav": {
+    "brand": "jorge.dev",
+    "ahora": "ahora",
+    "servicio": "servicio",
+    "trayectoria": "trayectoria",
+    "skills": "skills",
+    "skip": "Ir al contenido",
+    "langLabel": "Idioma",
+    "sectionsLabel": "Secciones"
+  },
+  "hero": {
+    "eyebrow": "// desarrollador full stack · Santiago, Chile",
+    "title": "Construyo productos web de punta a punta.",
+    "lede": "14 años creciendo dentro de una misma empresa: soporte, QA, DevOps y desarrollo. Hoy construyo mis propios proyectos y tomo proyectos freelance.",
+    "cta": "Escríbeme un correo",
+    "ctaSecondary": "Ver lo que construyo ahora"
+  },
+  "ahora": {
+    "eyebrow": "ahora",
+    "title": "Lo que estoy construyendo",
+    "lede": "Proyectos propios, en distintas etapas."
+  },
+  "servicio": {
+    "eyebrow": "servicio",
+    "title": "Desarrollo full stack para tu proyecto",
+    "contactLabel": "Contacto"
+  },
+  "trayectoria": {
+    "eyebrow": "trayectoria",
+    "title": "14 años, una empresa, cuatro capas",
+    "lede": "Zweicom · 2012 – 2026. Cada etapa sumó una capa que hoy uso al desarrollar."
+  },
+  "skills": {
+    "eyebrow": "skills",
+    "title": "Dónde estoy y hacia dónde voy"
+  },
+  "estado": {
+    "idea": "Idea",
+    "diseno": "En diseño",
+    "desarrollo": "En desarrollo",
+    "publicado": "Publicado"
+  },
+  "footer": {
+    "rights": "Hecho en Santiago, Chile",
+    "email": "correo"
+  },
+  "mailto": {
+    "subject": "Proyecto freelance",
+    "body": "Hola Jorge,"
+  },
+  "proyecto": {
+    "stackLabel": "Tecnologías",
+    "ver": "Ver proyecto",
+    "repo": "Código"
+  }
+}

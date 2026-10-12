@@ -1,0 +1,55 @@
+---
+import { useTranslations } from '../i18n';
+import { site } from '../site';
+import type { Locale } from '../site';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const social = [
+  { href: `mailto:${site.email}`, label: t.footer.email },
+  { href: site.github, label: 'GitHub' },
+  { href: site.linkedin, label: 'LinkedIn' },
+].filter((item) => item.href.length > 0);
+---
+
+<footer>
+  <div class="wrap bar">
+    <p class="muted">© {year} {site.author} · {t.footer.rights}</p>
+    <ul>
+      {social.map((item) => (
+        <li><a href={item.href}>{item.label}</a></li>
+      ))}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--divider);
+  }
+
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 2.5rem 3.5rem;
+    font-size: var(--fs-small);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

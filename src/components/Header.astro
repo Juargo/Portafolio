@@ -75,6 +75,8 @@ const links = sections.map((id) => ({ href: `#${id}`, label: t.nav[id] }));
   nav a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: 44px;
     min-height: 44px;
     text-decoration: none;
   }
@@ -88,7 +90,6 @@ const links = sections.map((id) => ({ href: `#${id}`, label: t.nav[id] }));
     border: 1px solid var(--border);
     border-radius: 6px;
     padding-inline: 0.625rem;
-    min-height: 32px;
     color: var(--stardust);
   }
 </style>

@@ -26,6 +26,7 @@ Las actas de reunión están en la bóveda de Obsidian, **fuera de este reposito
 - **Reunión 003** — sistema visual: tema Andrómeda e Iosevka.
 - **Reunión 004** — backlog (P-01 … P-12), plan de 2 sprints, riesgos.
 - **Reunión 005** — cierre del Sprint 1.
+- **Reunión 006** — barra de avance de proyectos (P-13): milestone de GitHub por proyecto, calculado al compilar (ADR 0002).
 
 Las decisiones técnicas (arquitectura, herramientas) se registran como ADR en `doc/ADRs/`, dentro del repositorio.
 
@@ -77,6 +78,7 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 - **P-10** SEO y rendimiento (Lighthouse ≥ 90).
 - **P-11** Sección Skills. Los niveles y metas quedaron **postergados** (Reunión 003): los campos `nivelActual` y `nivelMeta` existen en el esquema pero son opcionales y hoy van vacíos.
 - **P-12** Dominio propio (post-MVP).
+- **P-13** Barra de avance por proyecto (Reunión 006, ADR 0002). Sin sprint asignado.
 
 **Otros pendientes:** completar `github` y `linkedin` en `src/site.ts`; definir el nombre final de la app de finanzas.
 

@@ -20,10 +20,10 @@ Supuestos: `milestone` es el título del milestone; la barra se suma bajo el `es
 
 | ID | Specs | Ruta | Estado | Commit |
 |---|---|---|---|---|
-| T1 | — | inline | pendiente | — |
-| T2 | S2, S3, S7 | inline | pendiente | — |
-| T3 | S1, S4, S6 | inline | pendiente | — |
-| T4 | S5 | inline | pendiente | — |
+| T1 | — | inline | hecho | fdf2a24 |
+| T2 | S2, S3, S7 | inline | hecho (RED → GREEN, 13 tests) | 9fe45e4 |
+| T3 | S1, S4, S6 | inline | hecho | 2609501 |
+| T4 | S5 | inline | hecho (secreto pendiente) | b0cc71f |
 
 - T1: Vitest + ADR 0004.
 - T2: `src/lib/progress.ts` con tests de cada caso de S3 y S7.
@@ -33,3 +33,5 @@ Supuestos: `milestone` es el título del milestone; la barra se suma bajo el `es
 ## Log
 
 - **L1** (2026-10-13) "arranquemos con P-13"
+- **L2** Verificación: `pnpm build`, `pnpm check` y `pnpm test` (13/13) sin errores. Prueba manual contra la API real (facebook/react): milestone parcial 54 %, completo 100 %, inexistente sin barra y con aviso `[avance]`. Lighthouse con barras: 100/100/100/100. Sin desborde a 375 y 1280 px.
+- **L3** Pendiente externo: crear `GH_PROGRESS_TOKEN` en Vercel, `VERCEL_DEPLOY_HOOK` en GitHub, y cargar `repo`/`milestone` en cada proyecto.

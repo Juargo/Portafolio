@@ -29,6 +29,38 @@
   "servicio": {
     "eyebrow": "servicio",
     "title": "Desarrollo full stack para tu proyecto",
+    "lede": "Ayudo a pymes a tener su primera aplicación web: desde entender lo que necesitas hasta dejarla publicada y funcionando.",
+    "pasos": [
+      {
+        "titulo": "Entender tu negocio.",
+        "texto": "Conversamos lo que necesitas y lo bajamos a funcionalidades concretas, sin jerga técnica."
+      },
+      {
+        "titulo": "Diseñar y construir.",
+        "texto": "Interfaz y sistema completo, frontend y backend, probado antes de entregarlo."
+      },
+      {
+        "titulo": "Publicar.",
+        "texto": "La dejo en internet, con su dominio y lista para que tus clientes la usen."
+      },
+      {
+        "titulo": "Acompañarte después.",
+        "texto": "Mantenimiento y soporte cuando la aplicación ya está en uso."
+      }
+    ],
+    "tagsLabel": "Tecnologías y prácticas",
+    "tags": [
+      "Angular",
+      "Node.js",
+      "TypeScript",
+      "PostgreSQL",
+      "MySQL",
+      "MariaDB",
+      "Despliegue en la nube",
+      "Pruebas automatizadas"
+    ],
+    "cierre": "¿Tienes una idea para tu negocio? Cuéntamela por correo y te respondo con los próximos pasos.",
+    "cta": "Escríbeme un correo",
     "contactLabel": "Contacto"
   },
   "trayectoria": {

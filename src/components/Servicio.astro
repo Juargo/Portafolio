@@ -1,0 +1,64 @@
+---
+import { useTranslations, mailtoHref } from '../i18n';
+import type { Locale } from '../site';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<ol class="pasos">
+  {t.servicio.pasos.map((paso) => (
+    <li>
+      <strong>{paso.titulo}</strong>
+      <span class="muted">{paso.texto}</span>
+    </li>
+  ))}
+</ol>
+
+<ul class="tags" aria-label={t.servicio.tagsLabel}>
+  {t.servicio.tags.map((tag) => <li class="tag">{tag}</li>)}
+</ul>
+
+<div class="cierre stack">
+  <p>{t.servicio.cierre}</p>
+  <div>
+    <a class="btn" href={mailtoHref(lang)}>{t.servicio.cta}</a>
+  </div>
+</div>
+
+<style>
+  .pasos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (max-width: 48rem) {
+    .pasos {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .pasos li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 1.5rem;
+    background: var(--nebula-dark);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .cierre {
+    gap: 1rem;
+    max-width: var(--measure);
+  }
+</style>

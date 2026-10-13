@@ -102,4 +102,4 @@ El MVP mínimo del sprint es P-06, P-09 y P-10.
 
 ## Antes de cerrar un cambio
 
-Antes de dar por terminado un cambio: `pnpm build` y `pnpm check` sin errores.
+Antes de dar por terminado un cambio: `pnpm build`, `pnpm check` y `pnpm test` sin errores (ADR 0004).

@@ -48,42 +48,53 @@ export async function getMilestoneProgress(
   const target = parseRepo(repo);
   if (!target) return skip(repo, 'no es un repositorio de GitHub');
 
-  const headers: Record<string, string> = {
-    Accept: 'application/vnd.github+json',
-    'X-GitHub-Api-Version': '2022-11-28',
+  const url = `https://api.github.com/repos/${encodeURIComponent(target.owner)}/${encodeURIComponent(target.name)}/milestones?state=all&per_page=100`;
+  const request = (withToken: boolean) => {
+    const headers: Record<string, string> = {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    };
+    if (withToken && token) headers.Authorization = `Bearer ${token}`;
+    return fetch(url, { headers, signal: AbortSignal.timeout(timeoutMs) });
   };
-  if (token) headers.Authorization = `Bearer ${token}`;
-
-  const url = `https://api.github.com/repos/${target.owner}/${target.name}/milestones?state=all&per_page=100`;
 
   let response: Response;
   try {
-    response = await fetch(url, { headers, signal: AbortSignal.timeout(timeoutMs) });
+    response = await request(true);
+    // Token vencido o revocado: se reintenta sin autenticar (ADR 0002).
+    if (response.status === 401 && token) {
+      console.warn(`[avance] ${repo}: el token fue rechazado; se consulta sin autenticar.`);
+      response = await request(false);
+    }
   } catch (error) {
     return skip(repo, `la API no respondió (${(error as Error).message})`);
   }
 
   if (response.status === 404) return skip(repo, 'el repositorio no existe o no es público');
-  if (response.status === 429 || response.headers.get('x-ratelimit-remaining') === '0') {
+  if (response.status === 429 || (response.status === 403 && response.headers.get('x-ratelimit-remaining') === '0')) {
     return skip(repo, 'se agotó el límite de la API');
   }
   if (!response.ok) return skip(repo, `la API respondió ${response.status}`);
 
-  let milestones: Milestone[];
+  let milestones: unknown;
   try {
-    milestones = (await response.json()) as Milestone[];
+    milestones = await response.json();
   } catch {
     return skip(repo, 'la respuesta de la API no es JSON válido');
   }
+  if (!Array.isArray(milestones)) return skip(repo, 'la respuesta de la API no es una lista de milestones');
 
-  const found = milestones.find((m) => m.title === milestone);
+  const found = (milestones as Partial<Milestone>[]).find((m) => m?.title === milestone);
   if (!found) return skip(repo, `no existe el milestone "${milestone}"`);
 
-  const closed = found.closed_issues;
-  const total = found.open_issues + closed;
+  const { open_issues: open, closed_issues: closed } = found;
+  if (!Number.isInteger(open) || !Number.isInteger(closed)) {
+    return skip(repo, `el milestone "${milestone}" no trae el conteo de issues`);
+  }
+  const total = open! + closed!;
   if (total === 0) return skip(repo, `el milestone "${milestone}" no tiene issues`);
 
-  return { closed, total, percent: Math.floor((closed / total) * 100) };
+  return { closed: closed!, total, percent: Math.floor((closed! / total) * 100) };
 }
 
 /** Deja el motivo en el log del build y sigue sin barra. */

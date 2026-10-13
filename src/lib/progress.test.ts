@@ -89,4 +89,38 @@ describe('getMilestoneProgress', () => {
     expect(await getMilestoneProgress(REPO, undefined, { fetch })).toBeNull();
     expect(fetch).not.toHaveBeenCalled();
   });
+
+  it('keeps a successful answer that used the last request of the rate limit', async () => {
+    const fetch = respond(200, [milestone('MVP', 1, 3)], { 'x-ratelimit-remaining': '0' });
+    expect(await getMilestoneProgress(REPO, 'MVP', { fetch })).toEqual({ closed: 3, total: 4, percent: 75 });
+  });
+
+  it('retries without the token when it is rejected', async () => {
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(new Response('{}', { status: 401 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify([milestone('MVP', 1, 1)]), { status: 200 }));
+    expect(await getMilestoneProgress(REPO, 'MVP', { fetch, token: 'expired' })).toEqual({
+      closed: 1,
+      total: 2,
+      percent: 50,
+    });
+    const [, retry] = fetch.mock.calls[1] as unknown as [string, RequestInit];
+    expect((retry.headers as Record<string, string>).Authorization).toBeUndefined();
+  });
+
+  it('returns null when the API does not answer in time', async () => {
+    const fetch = vi.fn(
+      (_url: string | URL | Request, init?: RequestInit) =>
+        new Promise<Response>((_resolve, reject) => {
+          init?.signal?.addEventListener('abort', () => reject(init.signal?.reason));
+        }),
+    );
+    expect(await getMilestoneProgress(REPO, 'MVP', { fetch, timeoutMs: 10 })).toBeNull();
+  });
+
+  it('returns null when the body is not a list of milestones', async () => {
+    expect(await getMilestoneProgress(REPO, 'MVP', { fetch: respond(200, { message: 'odd' }) })).toBeNull();
+    expect(await getMilestoneProgress(REPO, 'MVP', { fetch: respond(200, [{ title: 'MVP' }]) })).toBeNull();
+  });
 });

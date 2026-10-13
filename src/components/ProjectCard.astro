@@ -1,6 +1,7 @@
 ---
 import { useTranslations } from '../i18n';
 import type { Locale } from '../site';
+import type { Progress } from '../lib/progress';
 
 interface Props {
   lang: Locale;
@@ -11,11 +12,18 @@ interface Props {
   stack: string[];
   enlace?: string;
   repo?: string;
+  /** Avance del milestone; sin él no se muestra la barra (ADR 0002). */
+  avance?: Progress | null;
 }
 
-const { lang, titulo, estado, nota, descripcion, stack, enlace, repo } = Astro.props;
+const { lang, titulo, estado, nota, descripcion, stack, enlace, repo, avance } = Astro.props;
 const t = useTranslations(lang);
 const estadoLabel = nota ? `${t.estado[estado]} · ${nota}` : t.estado[estado];
+const avanceDetalle = avance
+  ? t.proyecto.avanceDetalle
+      .replace('{cerrados}', String(avance.closed))
+      .replace('{total}', String(avance.total))
+  : '';
 ---
 
 <article class="card stack">
@@ -24,6 +32,26 @@ const estadoLabel = nota ? `${t.estado[estado]} · ${nota}` : t.estado[estado];
   </p>
   <h3>{titulo}</h3>
   <p class="muted desc">{descripcion}</p>
+  {avance && (
+    <div class="avance">
+      <p class="avance-head">
+        <span>{t.proyecto.avance}</span>
+        <span class="avance-pct">{avance.percent} %</span>
+      </p>
+      <div
+        class="track"
+        role="progressbar"
+        aria-label={t.proyecto.avanceLabel.replace('{titulo}', titulo)}
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow={avance.percent}
+        aria-valuetext={`${avance.percent} %, ${avanceDetalle}`}
+      >
+        <div class="fill" style={`width: ${avance.percent}%`}></div>
+      </div>
+      <p class="avance-detalle muted">{avanceDetalle}</p>
+    </div>
+  )}
   {stack.length > 0 && (
     <ul class="tags stack-list" aria-label={t.proyecto.stackLabel}>
       {stack.map((item) => <li class="tech">{item}</li>)}
@@ -80,6 +108,41 @@ const estadoLabel = nota ? `${t.estado[estado]} · ${nota}` : t.estado[estado];
 
   .desc {
     font-size: 0.9375rem;
+  }
+
+  .avance {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    font-size: var(--fs-small);
+  }
+
+  .avance-head {
+    display: flex;
+    justify-content: space-between;
+    color: var(--stardust);
+  }
+
+  .avance-pct {
+    color: var(--lavender);
+    font-weight: 700;
+  }
+
+  .track {
+    height: 0.5rem;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .fill {
+    height: 100%;
+    background: var(--aurora);
+    border-radius: inherit;
+  }
+
+  .avance-detalle {
+    font-size: 0.8125rem;
   }
 
   .stack-list {

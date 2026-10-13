@@ -17,6 +17,8 @@ const proyectos = defineCollection({
     stack: z.array(z.string()).default([]),
     enlace: z.string().url().optional(),
     repo: z.string().url().optional(),
+    // Título del milestone de GitHub que mide el avance (Reunión 006).
+    milestone: z.string().optional(),
     orden: z.number().default(99),
   }),
 });

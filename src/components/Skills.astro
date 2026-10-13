@@ -1,0 +1,102 @@
+---
+import { useTranslations } from '../i18n';
+import type { Locale } from '../site';
+
+interface Skill {
+  nombre: string;
+  categoria: string;
+  nivelActual?: number;
+  nivelMeta?: number;
+  evidencia: string[];
+  orden: number;
+}
+
+interface Props {
+  lang: Locale;
+  skills: Skill[];
+}
+
+const { lang, skills } = Astro.props;
+const t = useTranslations(lang);
+
+/** Agrupa por categoría (Reunión 004). Las categorías siguen el orden de su primera skill. */
+const grupos = new Map<string, Skill[]>();
+for (const skill of [...skills].sort((a, b) => a.orden - b.orden)) {
+  grupos.set(skill.categoria, [...(grupos.get(skill.categoria) ?? []), skill]);
+}
+
+// Los niveles son opcionales y hoy van vacíos (Reunión 003); se muestran solo si existen.
+const nivel = (plantilla: string, valor: number) => plantilla.replace('{n}', String(valor));
+---
+
+<div class="grupos">
+  {[...grupos].map(([categoria, items]) => (
+    <section class="grupo stack" aria-label={categoria}>
+      <p class="categoria">{categoria}</p>
+      {items.map((skill) => (
+        <div class="skill stack">
+          <h3>{skill.nombre}</h3>
+          {(skill.nivelActual || skill.nivelMeta) && (
+            <p class="niveles">
+              {skill.nivelActual && <span>{nivel(t.skills.nivelActual, skill.nivelActual)}</span>}
+              {skill.nivelMeta && <span>{nivel(t.skills.nivelMeta, skill.nivelMeta)}</span>}
+            </p>
+          )}
+          {skill.evidencia.length > 0 && (
+            <ul class="evidencia muted">
+              {skill.evidencia.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+        </div>
+      ))}
+    </section>
+  ))}
+</div>
+
+<style>
+  .grupos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
+    gap: 1.25rem;
+  }
+
+  .grupo {
+    gap: 1rem;
+    min-width: 0;
+    padding: 1.5rem;
+    background: var(--nebula-dark);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .categoria {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--aurora);
+  }
+
+  .skill {
+    gap: 0.5rem;
+  }
+
+  h3 {
+    font-size: var(--fs-h3);
+  }
+
+  .niveles {
+    display: flex;
+    gap: 1rem;
+    font-size: var(--fs-small);
+    color: var(--star);
+  }
+
+  .evidencia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin: 0;
+    padding-left: 1.125rem;
+    font-size: 0.9375rem;
+  }
+</style>

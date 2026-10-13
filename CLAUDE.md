@@ -33,27 +33,6 @@ El proyecto se lleva con **Agile**: cada tanda de trabajo se decide en una reuni
 
 ---
 
-## Estructura
-
-```
-src/
-  content/
-    proyectos/es/      un .md por proyecto
-    trayectoria/es/    un .md por etapa en Zweicom
-    skills/es/         un .md por skill
-  content.config.ts    esquema de las tres colecciones
-  i18n/es.json         TODOS los textos de interfaz
-  i18n/index.ts        useTranslations, mailtoHref, byLang
-  site.ts              correo, GitHub, LinkedIn
-  components/          Header, Hero, ProjectCard, Timeline, SectionHeading, Footer
-  layouts/Base.astro   <head>, header, pie
-  pages/index.astro    raíz: salta a /es/
-  pages/es/index.astro la landing
-  styles/global.css    tokens Andrómeda y utilidades
-```
-
----
-
 ## Reglas del proyecto
 
 **El contenido no se escribe en los componentes.** Un proyecto, una etapa de la trayectoria o una skill se agregan creando un `.md` en `src/content/`. Un texto de interfaz se agrega a `src/i18n/es.json`. Si estás por escribir una cadena en español dentro de un `.astro`, va en el JSON: de lo contrario el inglés queda sin traducir.
@@ -72,17 +51,7 @@ src/
 
 ## Sistema visual
 
-Tipografía **Iosevka** (OFL), autoalojada vía `@fontsource/iosevka`, pesos 400 y 700, monoespaciada en todo el sitio. Los tokens están en `src/styles/global.css`:
-
-| Rol | Variable | Hex |
-|---|---|---|
-| Fondo | `--void` | `#0b0a14` |
-| Tarjetas | `--nebula-dark` | `#14132a` |
-| Texto | `--lavender` | `#e8e6f5` |
-| Texto secundario | `--stardust` | `#9a97b8` |
-| Acento principal | `--nebula` | `#8b7cf6` |
-| Estados y fechas | `--star` | `#f2b66d` |
-| Etiquetas de sección | `--aurora` | `#5ec8c0` |
+Tipografía **Iosevka** (OFL), autoalojada vía `@fontsource/iosevka`, pesos 400 y 700, monoespaciada en todo el sitio. Los tokens de color están en `src/styles/global.css`.
 
 Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 
@@ -125,14 +94,6 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 
 ---
 
-## Comandos
-
-```bash
-pnpm install
-pnpm dev          # http://localhost:4321
-pnpm build        # genera dist/
-pnpm preview      # sirve dist/
-pnpm check        # tipos y accesibilidad; debe quedar en 0 errores
-```
+## Antes de cerrar un cambio
 
 Antes de dar por terminado un cambio: `pnpm build` y `pnpm check` sin errores.

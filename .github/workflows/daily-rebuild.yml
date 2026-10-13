@@ -1,0 +1,25 @@
+# Recompila el sitio una vez al día para refrescar la barra de avance
+# de los proyectos (ADR 0002). También se puede disparar a mano.
+name: Daily rebuild
+
+on:
+  schedule:
+    - cron: '0 9 * * *' # 09:00 UTC, 06:00 en Santiago (horario de verano)
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  deploy-hook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger Vercel deploy hook
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "::error::Missing repository secret VERCEL_DEPLOY_HOOK."
+            exit 1
+          fi
+          curl --fail --silent --show-error --retry 3 -X POST "$VERCEL_DEPLOY_HOOK" > /dev/null

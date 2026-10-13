@@ -96,10 +96,14 @@ El MVP mínimo del sprint es P-06, P-09 y P-10.
 - **Vercel:** proyecto `portafolio` en el equipo `juargos-projects`, conectado al repositorio. Producción: https://portafolio-umber-gamma-88.vercel.app (subdominio provisional hasta P-12).
 - **Rama de producción:** `main`. Cada merge a `main` despliega a producción; cada PR y cada rama generan un deploy de preview.
 - **Preset de framework:** `"framework": "astro"` en `vercel.json`. Vercel no detectó Astro al crear el proyecto y lo dejó en "Other", que publica `public/` en vez de `dist/`; no hay que quitarlo.
+- **Barra de avance (P-13, ADR 0002):**
+  - `GH_PROGRESS_TOKEN`: variable de entorno en Vercel (Production y Preview) con un fine-grained token de solo lectura (Issues y Metadata). Es opcional: sin ella, la API se consulta sin autenticar.
+  - `VERCEL_DEPLOY_HOOK`: secreto del repositorio en GitHub con la URL del deploy hook de Vercel (rama `main`). Lo usa `.github/workflows/daily-rebuild.yml`, que recompila el sitio cada día a las 09:00 UTC y se puede disparar a mano.
+  - Para que un proyecto muestre la barra, su `.md` necesita `repo` (repositorio público) y `milestone` (título exacto del milestone). Si algo falla, el build lo informa con `[avance]` y el proyecto se publica sin barra.
 - **Versión de pnpm:** el proyecto tiene la variable `ENABLE_EXPERIMENTAL_COREPACK=1` en Production, Preview y Development. Con ella, Vercel usa la versión de `packageManager` en `package.json`; sin ella, elige pnpm 9 o 10 según el lockfile (ver ADR 0001).
 
 ---
 
 ## Antes de cerrar un cambio
 
-Antes de dar por terminado un cambio: `pnpm build` y `pnpm check` sin errores.
+Antes de dar por terminado un cambio: `pnpm build`, `pnpm check` y `pnpm test` sin errores (ADR 0004).

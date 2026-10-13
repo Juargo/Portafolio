@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { hreflang } from './src/site.ts';
 
@@ -7,6 +7,13 @@ const SITE = process.env.SITE_URL ?? 'https://portafolio-umber-gamma-88.vercel.a
 
 export default defineConfig({
   site: SITE,
+  env: {
+    schema: {
+      // Token de GitHub de solo lectura para la barra de avance (ADR 0002).
+      // Opcional: sin él, la API se consulta sin autenticar.
+      GH_PROGRESS_TOKEN: envField.string({ context: 'server', access: 'secret', optional: true }),
+    },
+  },
   i18n: {
     locales: ['es', 'en'],
     defaultLocale: 'es',

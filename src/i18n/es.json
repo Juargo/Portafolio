@@ -89,6 +89,9 @@
   "proyecto": {
     "stackLabel": "Tecnologías",
     "ver": "Ver proyecto",
-    "repo": "Código"
+    "repo": "Código",
+    "avance": "Avance",
+    "avanceLabel": "Avance de {titulo}",
+    "avanceDetalle": "{cerrados} de {total} issues cerrados"
   }
 }

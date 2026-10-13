@@ -7,6 +7,8 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import Servicio from '../../components/Servicio.astro';
 import Timeline from '../../components/Timeline.astro';
 import { useTranslations, byLang } from '../../i18n';
+import { getMilestoneProgress } from '../../lib/progress';
+import { GH_PROGRESS_TOKEN } from 'astro:env/server';
 
 const lang = 'es' as const;
 const t = useTranslations(lang);
@@ -16,8 +18,15 @@ const t = useTranslations(lang);
 const sections = ['ahora', 'servicio', 'trayectoria'] as const;
 const n = (id: (typeof sections)[number]) => sections.indexOf(id) + 1;
 
-const proyectos = byLang(await getCollection('proyectos'), lang).sort(
-  (a, b) => a.data.orden - b.data.orden,
+const proyectos = await Promise.all(
+  byLang(await getCollection('proyectos'), lang)
+    .sort((a, b) => a.data.orden - b.data.orden)
+    .map(async (proyecto) => ({
+      ...proyecto.data,
+      avance: await getMilestoneProgress(proyecto.data.repo, proyecto.data.milestone, {
+        token: GH_PROGRESS_TOKEN,
+      }),
+    })),
 );
 
 const etapas = byLang(await getCollection('trayectoria'), lang)
@@ -37,7 +46,7 @@ const etapas = byLang(await getCollection('trayectoria'), lang)
     />
     <div class="cards">
       {proyectos.map((proyecto) => (
-        <ProjectCard lang={lang} {...proyecto.data} />
+        <ProjectCard lang={lang} {...proyecto} />
       ))}
     </div>
   </section>

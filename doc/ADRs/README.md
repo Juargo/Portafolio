@@ -7,3 +7,4 @@ Las decisiones de producto siguen registrándose en las actas de reunión de Obs
 | N.º | Decisión | Estado |
 |---|---|---|
 | [0001](0001-usar-pnpm.md) | Usar pnpm en lugar de npm | Aceptada |
+| [0002](0002-avance-de-proyectos-al-compilar.md) | Calcular el avance de proyectos al compilar | Aceptada |

@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { hreflang } from './src/site.ts';
 
 // Cambia SITE cuando tengas el dominio definitivo (P-12).
-const SITE = process.env.SITE_URL ?? 'https://portafolio.vercel.app';
+const SITE = process.env.SITE_URL ?? 'https://portafolio-umber-gamma-88.vercel.app';
 
 export default defineConfig({
   site: SITE,
@@ -16,5 +17,11 @@ export default defineConfig({
       redirectToDefaultLocale: false,
     },
   },
-  integrations: [sitemap({ i18n: { defaultLocale: 'es', locales: { es: 'es-CL', en: 'en' } } })],
+  integrations: [
+    sitemap({
+      // La raíz solo redirige a /es/ (y lleva noindex): no se indexa.
+      filter: (page) => new URL(page).pathname !== '/',
+      i18n: { defaultLocale: 'es', locales: hreflang },
+    }),
+  ],
 });

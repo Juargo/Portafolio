@@ -53,7 +53,7 @@ El proyecto se lleva con **Agile**: cada tanda de trabajo se decide en una reuni
 
 ## Sistema visual
 
-Tipografía **Iosevka** (OFL), autoalojada vía `@fontsource/iosevka`, pesos 400 y 700, monoespaciada en todo el sitio. Los tokens de color están en `src/styles/global.css`.
+Tipografía **Iosevka** (OFL), pesos 400 y 700, monoespaciada en todo el sitio. Va recortada a los caracteres que usa el sitio (ADR 0003): si el contenido suma un carácter nuevo, se agrega en `scripts/subset-fonts.sh` y se vuelve a ejecutar. Los tokens de color están en `src/styles/global.css`.
 
 Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 

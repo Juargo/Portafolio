@@ -1,10 +1,11 @@
 ---
-import '@fontsource/iosevka/latin-400.css';
-import '@fontsource/iosevka/latin-700.css';
+import iosevka400 from '../assets/fonts/iosevka-400.woff2?url';
+import iosevka700 from '../assets/fonts/iosevka-700.woff2?url';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { useTranslations } from '../i18n';
+import { hreflang, site } from '../site';
 import type { Locale } from '../site';
 
 type SectionId = 'ahora' | 'servicio' | 'trayectoria' | 'skills';
@@ -20,6 +21,12 @@ interface Props {
 const { lang, altLang, sections } = Astro.props;
 const t = useTranslations(lang);
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+/** Versiones de esta página por idioma; el español es la opción por defecto. */
+const alternates = [lang, ...(altLang ? [altLang] : [])].map((code) => ({
+  hreflang: hreflang[code],
+  href: new URL(`/${code}/`, Astro.site).href,
+}));
+const xDefault = new URL('/es/', Astro.site).href;
 ---
 
 <!doctype html>
@@ -27,13 +34,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={iosevka400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={iosevka700} as="font" type="font/woff2" crossorigin />
     <title>{t.meta.title}</title>
     <meta name="description" content={t.meta.description} />
     <link rel="canonical" href={canonical} />
+    {alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#0b0a14" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.author} />
     <meta property="og:title" content={t.meta.title} />
     <meta property="og:description" content={t.meta.description} />
     <meta property="og:url" content={canonical} />

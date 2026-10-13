@@ -1,3 +1,21 @@
+/* ── Tipografía ──────────────────────────────────────────── */
+/* Iosevka recortada a los caracteres del sitio (scripts/subset-fonts.sh). */
+@font-face {
+  font-family: 'Iosevka';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/iosevka-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Iosevka';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/iosevka-700.woff2') format('woff2');
+}
+
 /* ── Tema Andrómeda ───────────────────────────────────────── */
 :root {
   /* Superficies */

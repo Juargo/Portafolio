@@ -27,6 +27,7 @@ Las actas de reunión están en la bóveda de Obsidian, **fuera de este reposito
 - **Reunión 004** — backlog (P-01 … P-12), plan de 2 sprints, riesgos.
 - **Reunión 005** — cierre del Sprint 1.
 - **Reunión 006** — barra de avance de proyectos (P-13): milestone de GitHub por proyecto, calculado al compilar (ADR 0002).
+- **Reunión 007** — planificación del Sprint 2: alcance, prioridad y orden de recorte, texto aprobado del servicio y bajada de la trayectoria.
 
 Las decisiones técnicas (arquitectura, herramientas) se registran como ADR en `doc/ADRs/`, dentro del repositorio.
 
@@ -70,19 +71,22 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 
 **Sprint 1 cerrado** (P-01 a P-05 y P-07): proyecto, tipografía y tokens, layout, hero, sección Ahora y Trayectoria. Compila sin errores.
 
-**Sprint 2 pendiente:**
+**Sprint 2 en curso** (13 al 24 oct, 22 pts, Reunión 007). En orden de prioridad; si no alcanza el tiempo, se recorta desde abajo:
 
-- **P-06** Sección Servicio y contacto — falta el texto, lo escribe Jorge.
-- **P-08** Versión en inglés.
-- **P-09** Repaso responsive.
-- **P-10** SEO y rendimiento (Lighthouse ≥ 90).
-- **P-11** Sección Skills. Los niveles y metas quedaron **postergados** (Reunión 003): los campos `nivelActual` y `nivelMeta` existen en el esquema pero son opcionales y hoy van vacíos.
-- **P-12** Dominio propio (post-MVP).
-- **P-13** Barra de avance por proyecto (Reunión 006, ADR 0002). Sin sprint asignado.
+1. **P-06** Sección Servicio y contacto. El texto está aprobado en la Reunión 007 y se copia tal cual.
+2. **P-09** Repaso responsive.
+3. **P-10** SEO y rendimiento (Lighthouse ≥ 90).
+4. **P-13** Barra de avance por proyecto (Reunión 006, ADR 0002). Criterios de aceptación en la Reunión 007.
+5. **P-11** Sección Skills. Los niveles y metas quedaron **postergados** (Reunión 003): los campos `nivelActual` y `nivelMeta` existen en el esquema pero son opcionales y hoy van vacíos.
+6. **P-08** Versión en inglés. Se traduce al final, con los textos en español cerrados.
 
-**Otros pendientes:** completar `github` y `linkedin` en `src/site.ts`; definir el nombre final de la app de finanzas.
+El MVP mínimo del sprint es P-06, P-09 y P-10.
 
-**Punto de contenido abierto:** el título de la trayectoria dice "cuatro capas" pero la línea de tiempo muestra tres etapas. Hay que ajustar el título o nombrar las cuatro capas en la bajada.
+**Post-MVP:** **P-12** Dominio propio.
+
+**Otros pendientes:** completar `github` y `linkedin` en `src/site.ts`; definir el nombre final de la app de finanzas; preparar los repositorios de proyectos para P-13 (públicos, con milestone, y `repo`/`milestone` en cada `.md`).
+
+**Bajada de la trayectoria (decidida, falta aplicarla):** el título "14 años, una empresa, cuatro capas" se mantiene y la bajada nombra las cuatro capas: "Zweicom · 2012 – 2026. Soporte, QA, DevOps y desarrollo: cada etapa sumó una capa que hoy uso al desarrollar."
 
 ---
 

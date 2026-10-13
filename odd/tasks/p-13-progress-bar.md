@@ -35,3 +35,4 @@ Supuestos: `milestone` es el título del milestone; la barra se suma bajo el `es
 - **L1** (2026-10-13) "arranquemos con P-13"
 - **L2** Verificación: `pnpm build`, `pnpm check` y `pnpm test` (13/13) sin errores. Prueba manual contra la API real (facebook/react): milestone parcial 54 %, completo 100 %, inexistente sin barra y con aviso `[avance]`. Lighthouse con barras: 100/100/100/100. Sin desborde a 375 y 1280 px.
 - **L3** Pendiente externo: crear `GH_PROGRESS_TOKEN` en Vercel, `VERCEL_DEPLOY_HOOK` en GitHub, y cargar `repo`/`milestone` en cada proyecto.
+- **L4** Revisión Gentle AI aprobada (riesgo, resiliencia, confiabilidad) con avisos no bloqueantes. Se corrigieron en `35f5db3` con test previo (RED → GREEN, 17 tests): un 200 con el último request del límite se descartaba; un token vencido no reintentaba sin autenticar; un cuerpo que no es lista rompía el build. La revisión de la corrección se omitió por decisión del usuario.

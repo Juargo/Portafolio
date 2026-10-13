@@ -1,10 +1,12 @@
 import es from './es.json';
+import en from './en.json';
 import type { Locale } from '../site';
 import { site } from '../site';
 
-const dictionaries = { es, en: es } as const; // `en` se reemplaza en el Sprint 2 (P-08)
-
 export type Dictionary = typeof es;
+
+/** `en.json` debe tener las mismas claves que `es.json`; si falta una, `pnpm check` falla. */
+const dictionaries: Record<Locale, Dictionary> = { es, en };
 
 export function useTranslations(lang: Locale): Dictionary {
   return dictionaries[lang] ?? es;

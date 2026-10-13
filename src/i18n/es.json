@@ -70,7 +70,9 @@
   },
   "skills": {
     "eyebrow": "skills",
-    "title": "Dónde estoy y hacia dónde voy"
+    "title": "Dónde estoy y hacia dónde voy",
+    "nivelActual": "Hoy: {n}/5",
+    "nivelMeta": "Meta: {n}/5"
   },
   "estado": {
     "idea": "Idea",

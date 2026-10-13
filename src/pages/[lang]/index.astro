@@ -10,8 +10,16 @@ import Skills from '../../components/Skills.astro';
 import { useTranslations, byLang } from '../../i18n';
 import { getMilestoneProgress } from '../../lib/progress';
 import { GH_PROGRESS_TOKEN } from 'astro:env/server';
+import { locales } from '../../site';
+import type { Locale } from '../../site';
 
-const lang = 'es' as const;
+/** Una página por idioma, con el mismo código: lo que cambia es el contenido. */
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const altLang = locales.find((code) => code !== lang);
 const t = useTranslations(lang);
 
 /** Secciones presentes en esta página, en orden. Numeran el encabezado y
@@ -37,7 +45,7 @@ const etapas = byLang(await getCollection('trayectoria'), lang)
   .map((entry) => entry.data);
 ---
 
-<Base lang={lang} sections={[...sections]}>
+<Base lang={lang} altLang={altLang} sections={[...sections]}>
   <Hero lang={lang} />
 
   <section id="ahora" class="wrap stack section">

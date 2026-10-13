@@ -39,7 +39,7 @@ El proyecto se lleva con **Agile**: cada tanda de trabajo se decide en una reuni
 
 **El contenido no se escribe en los componentes.** Un proyecto, una etapa de la trayectoria o una skill se agregan creando un `.md` en `src/content/`. Un texto de interfaz se agrega a `src/i18n/es.json`. Si estás por escribir una cadena en español dentro de un `.astro`, va en el JSON: de lo contrario el inglés queda sin traducir.
 
-**Las secciones se declaran una sola vez.** `src/pages/es/index.astro` tiene un arreglo `sections` que numera los encabezados y alimenta la navegación. Agregar una sección significa agregarla ahí; así nunca hay anclas muertas ni saltos de numeración.
+**Las secciones se declaran una sola vez.** `src/pages/[lang]/index.astro` (una sola página para los dos idiomas) tiene un arreglo `sections` que numera los encabezados y alimenta la navegación. Agregar una sección significa agregarla ahí; así nunca hay anclas muertas ni saltos de numeración.
 
 **Nada confidencial de Zweicom.** Es una empresa privada. La trayectoria se cuenta por tipo de problema resuelto y tecnología usada, sin nombres de sistemas internos, clientes ni capturas.
 
@@ -63,7 +63,7 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 
 `astro.config.mjs` declara `es` (por defecto) y `en`, ambos con prefijo de ruta. La raíz redirige a `/es/`: en Vercel vía `vercel.json`, y con `src/pages/index.astro` como respaldo local.
 
-**El inglés aún no existe** (historia P-08). Para agregarlo: crear `src/i18n/en.json`, apuntarlo en el objeto `dictionaries` de `src/i18n/index.ts`, duplicar el contenido en carpetas `en/` y crear `src/pages/en/index.astro`. El selector del header aparece solo cuando se le pasa `altLang`.
+**Los dos idiomas usan la misma página**, `src/pages/[lang]/index.astro`, que genera `/es/` y `/en/`. Los textos de interfaz están en `src/i18n/es.json` y `src/i18n/en.json`, que deben tener las mismas claves (`pnpm check` falla si falta una). El contenido se duplica en carpetas `es/` y `en/` de cada colección. **Todo cambio de texto se hace en los dos idiomas.**
 
 ---
 
@@ -86,7 +86,6 @@ El MVP mínimo del sprint es P-06, P-09 y P-10.
 
 **Otros pendientes:** completar `github` y `linkedin` en `src/site.ts`; definir el nombre final de la app de finanzas; preparar los repositorios de proyectos para P-13 (públicos, con milestone, y `repo`/`milestone` en cada `.md`).
 
-**Bajada de la trayectoria (decidida, falta aplicarla):** el título "14 años, una empresa, cuatro capas" se mantiene y la bajada nombra las cuatro capas: "Zweicom · 2012 – 2026. Soporte, QA, DevOps y desarrollo: cada etapa sumó una capa que hoy uso al desarrollar."
 
 ---
 

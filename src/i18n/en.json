@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "title": "Jorge Retamal — Full stack developer",
+    "description": "Full stack developer based in Santiago, Chile. 14 years of experience across support, QA, DevOps and development. Available for freelance projects.",
+    "locale": "en_US"
+  },
+  "nav": {
+    "brand": "jorge.dev",
+    "ahora": "now",
+    "servicio": "service",
+    "trayectoria": "career",
+    "skills": "skills",
+    "skip": "Skip to content",
+    "langLabel": "Language",
+    "sectionsLabel": "Sections"
+  },
+  "hero": {
+    "eyebrow": "// full stack developer · Santiago, Chile",
+    "title": "I build web products end to end.",
+    "lede": "14 years growing inside one company: support, QA, DevOps and development. Today I build my own projects and take on freelance work.",
+    "cta": "Send me an email",
+    "ctaSecondary": "See what I'm building now"
+  },
+  "ahora": {
+    "eyebrow": "now",
+    "title": "What I'm building",
+    "lede": "My own projects, at different stages."
+  },
+  "servicio": {
+    "eyebrow": "service",
+    "title": "Full stack development for your project",
+    "lede": "I help small businesses get their first web application: from understanding what you need to having it live and running.",
+    "pasos": [
+      {
+        "titulo": "Understand your business.",
+        "texto": "We talk through what you need and turn it into concrete features, without technical jargon."
+      },
+      {
+        "titulo": "Design and build.",
+        "texto": "Interface and the complete system, frontend and backend, tested before delivery."
+      },
+      {
+        "titulo": "Launch.",
+        "texto": "I put it online, with its own domain and ready for your customers to use."
+      },
+      {
+        "titulo": "Support you afterwards.",
+        "texto": "Maintenance and support once the application is in use."
+      }
+    ],
+    "tagsLabel": "Technologies and practices",
+    "tags": [
+      "Angular",
+      "Node.js",
+      "TypeScript",
+      "PostgreSQL",
+      "MySQL",
+      "MariaDB",
+      "Cloud deployment",
+      "Automated testing"
+    ],
+    "cierre": "Have an idea for your business? Tell me about it by email and I'll reply with the next steps.",
+    "cta": "Send me an email",
+    "contactLabel": "Contact"
+  },
+  "trayectoria": {
+    "eyebrow": "career",
+    "title": "14 years, one company, four layers",
+    "lede": "Zweicom · 2012 – 2026. Support, QA, DevOps and development: each stage added a layer I use today when I build."
+  },
+  "skills": {
+    "eyebrow": "skills",
+    "title": "Where I am and where I'm going",
+    "nivelActual": "Now: {n}/5",
+    "nivelMeta": "Goal: {n}/5"
+  },
+  "estado": {
+    "idea": "Idea",
+    "diseno": "In design",
+    "desarrollo": "In development",
+    "publicado": "Live"
+  },
+  "footer": {
+    "rights": "Made in Santiago, Chile",
+    "email": "email"
+  },
+  "mailto": {
+    "subject": "Freelance project",
+    "body": "Hi Jorge,"
+  },
+  "proyecto": {
+    "stackLabel": "Technologies",
+    "ver": "View project",
+    "repo": "Code",
+    "avance": "Progress",
+    "avanceLabel": "{titulo} progress",
+    "avanceDetalle": "{cerrados} of {total} issues closed"
+  }
+}

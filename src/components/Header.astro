@@ -72,6 +72,13 @@ const links = sections.map((id) => ({ href: `#${id}`, label: t.nav[id] }));
     font-size: var(--fs-small);
   }
 
+  /* En pantallas angostas, menos aire para que los enlaces y el selector de idioma quepan en una línea. */
+  @media (max-width: 30rem) {
+    nav ul {
+      column-gap: 0.875rem;
+    }
+  }
+
   nav a {
     display: inline-flex;
     align-items: center;

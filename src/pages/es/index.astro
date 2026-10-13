@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import Servicio from '../../components/Servicio.astro';
 import Timeline from '../../components/Timeline.astro';
 import { useTranslations, byLang } from '../../i18n';
 
@@ -12,7 +13,7 @@ const t = useTranslations(lang);
 
 /** Secciones presentes en esta página, en orden. Numeran el encabezado y
  *  alimentan la navegación, así nunca hay anclas muertas ni saltos de número. */
-const sections = ['ahora', 'trayectoria'] as const;
+const sections = ['ahora', 'servicio', 'trayectoria'] as const;
 const n = (id: (typeof sections)[number]) => sections.indexOf(id) + 1;
 
 const proyectos = byLang(await getCollection('proyectos'), lang).sort(
@@ -39,6 +40,16 @@ const etapas = byLang(await getCollection('trayectoria'), lang)
         <ProjectCard lang={lang} {...proyecto.data} />
       ))}
     </div>
+  </section>
+
+  <section id="servicio" class="wrap stack section">
+    <SectionHeading
+      n={n('servicio')}
+      eyebrow={t.servicio.eyebrow}
+      title={t.servicio.title}
+      lede={t.servicio.lede}
+    />
+    <Servicio lang={lang} />
   </section>
 
   <section id="trayectoria" class="wrap stack section">

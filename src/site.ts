@@ -11,3 +11,6 @@ export const site = {
 
 export const locales = ['es', 'en'] as const;
 export type Locale = (typeof locales)[number];
+
+/** Código de idioma por locale, para `hreflang` y el sitemap. */
+export const hreflang: Record<Locale, string> = { es: 'es-CL', en: 'en' };

@@ -98,6 +98,8 @@ export async function getMilestones(
     })
     // Un milestone sin issues no tiene porcentaje (0 de 0): se omite.
     .filter((m) => m.open_issues + m.closed_issues > 0)
+    // Una fecha ilegible se descarta: formatearla rompería el build.
+    .map((m) => (m.due_on && Number.isNaN(Date.parse(m.due_on)) ? { ...m, due_on: null } : m))
     .sort(byDueDate)
     .map((m) => {
       const total = m.open_issues + m.closed_issues;

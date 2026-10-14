@@ -60,6 +60,11 @@ describe('getMilestones', () => {
     expect((await getMilestones(REPO, { fetch }))?.map((m) => m.title)).toEqual(['MVP']);
   });
 
+  it('drops an unreadable due date instead of failing', async () => {
+    const fetch = respond(200, [milestone('MVP', 1, 1, { due_on: 'not-a-date' })]);
+    expect((await getMilestones(REPO, { fetch }))?.[0].dueOn).toBeNull();
+  });
+
   it('only reaches 100 when every issue is closed', async () => {
     const fetch = respond(200, [milestone('Casi', 1, 199), milestone('Listo', 0, 4)]);
     expect((await getMilestones(REPO, { fetch }))?.map((m) => m.percent)).toEqual([99, 100]);

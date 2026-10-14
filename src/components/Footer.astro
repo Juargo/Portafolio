@@ -1,5 +1,5 @@
 ---
-import { useTranslations } from '../i18n';
+import { useTranslations, mailtoHref } from '../i18n';
 import { site } from '../site';
 import type { Locale } from '../site';
 
@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 const year = new Date().getFullYear();
 
 const social = [
-  { href: `mailto:${site.email}`, label: t.footer.email },
+  { href: mailtoHref(lang), label: t.footer.email },
   { href: site.github, label: 'GitHub' },
   { href: site.linkedin, label: 'LinkedIn' },
 ].filter((item) => item.href.length > 0);

@@ -12,14 +12,13 @@ export function useTranslations(lang: Locale): Dictionary {
   return dictionaries[lang] ?? es;
 }
 
-/** Enlace de correo con asunto y saludo prellenados. */
+/** Enlace de correo con asunto y saludo prellenados. Los espacios van como
+ *  `%20`: en un `mailto:` el `+` no es un espacio (RFC 6068). */
 export function mailtoHref(lang: Locale): string {
   const t = useTranslations(lang);
-  const params = new URLSearchParams({
-    subject: t.mailto.subject,
-    body: `${t.mailto.body}\n\n`,
-  });
-  return `mailto:${site.email}?${params.toString()}`;
+  const subject = encodeURIComponent(t.mailto.subject);
+  const body = encodeURIComponent(`${t.mailto.body}\n\n`);
+  return `mailto:${site.email}?subject=${subject}&body=${body}`;
 }
 
 /** Filtra una colección por el idioma, según la subcarpeta del archivo. */

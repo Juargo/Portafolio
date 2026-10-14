@@ -1,10 +1,14 @@
 /**
- * Avance de un proyecto según un milestone de GitHub (Reunión 006, ADR 0002).
- * Se consulta al compilar. Ante cualquier problema devuelve `null`: el
- * proyecto se publica sin barra y el build nunca se rompe.
+ * Avance de un proyecto según los milestones de su repositorio de GitHub
+ * (Reunión 010, ADR 0005). Se consulta al compilar. Ante cualquier problema
+ * devuelve `null`: el proyecto se publica sin barras y el build nunca se rompe.
  */
 
-export interface Progress {
+export interface MilestoneProgress {
+  title: string;
+  state: 'open' | 'closed';
+  /** Fecha límite en ISO 8601, o `null` si el milestone no tiene. */
+  dueOn: string | null;
   closed: number;
   total: number;
   /** Entero de 0 a 100. Solo llega a 100 con todos los issues cerrados. */
@@ -19,7 +23,10 @@ interface Options {
 }
 
 interface Milestone {
+  number: number;
   title: string;
+  state: 'open' | 'closed';
+  due_on: string | null;
   open_issues: number;
   closed_issues: number;
 }
@@ -38,12 +45,11 @@ export function parseRepo(url: string): { owner: string; name: string } | null {
   return { owner, name: name.replace(/\.git$/, '') };
 }
 
-export async function getMilestoneProgress(
+export async function getMilestones(
   repo: string | undefined,
-  milestone: string | undefined,
   { fetch = globalThis.fetch, token, timeoutMs = 10_000 }: Options = {},
-): Promise<Progress | null> {
-  if (!repo || !milestone) return null;
+): Promise<MilestoneProgress[] | null> {
+  if (!repo) return null;
 
   const target = parseRepo(repo);
   if (!target) return skip(repo, 'no es un repositorio de GitHub');
@@ -84,21 +90,53 @@ export async function getMilestoneProgress(
   }
   if (!Array.isArray(milestones)) return skip(repo, 'la respuesta de la API no es una lista de milestones');
 
-  const found = (milestones as Partial<Milestone>[]).find((m) => m?.title === milestone);
-  if (!found) return skip(repo, `no existe el milestone "${milestone}"`);
+  const progress = (milestones as unknown[])
+    .filter((m): m is Milestone => {
+      if (isMilestone(m)) return true;
+      console.warn(`[avance] ${repo}: se omite un milestone con datos incompletos.`);
+      return false;
+    })
+    // Un milestone sin issues no tiene porcentaje (0 de 0): se omite.
+    .filter((m) => m.open_issues + m.closed_issues > 0)
+    .sort(byDueDate)
+    .map((m) => {
+      const total = m.open_issues + m.closed_issues;
+      return {
+        title: m.title,
+        state: m.state,
+        dueOn: m.due_on,
+        closed: m.closed_issues,
+        total,
+        percent: Math.floor((m.closed_issues / total) * 100),
+      };
+    });
 
-  const { open_issues: open, closed_issues: closed } = found;
-  if (!Number.isInteger(open) || !Number.isInteger(closed)) {
-    return skip(repo, `el milestone "${milestone}" no trae el conteo de issues`);
-  }
-  const total = open! + closed!;
-  if (total === 0) return skip(repo, `el milestone "${milestone}" no tiene issues`);
-
-  return { closed: closed!, total, percent: Math.floor((closed! / total) * 100) };
+  if (progress.length === 0) return skip(repo, 'no tiene milestones con issues');
+  return progress;
 }
 
-/** Deja el motivo en el log del build y sigue sin barra. */
+function isMilestone(value: unknown): value is Milestone {
+  const m = value as Partial<Milestone> | null;
+  return (
+    typeof m?.title === 'string' &&
+    Number.isInteger(m.number) &&
+    (m.state === 'open' || m.state === 'closed') &&
+    (m.due_on === null || typeof m.due_on === 'string') &&
+    Number.isInteger(m.open_issues) &&
+    Number.isInteger(m.closed_issues)
+  );
+}
+
+/** Por fecha límite; los que no tienen fecha van al final, en orden de creación. */
+function byDueDate(a: Milestone, b: Milestone): number {
+  if (a.due_on && b.due_on) return a.due_on.localeCompare(b.due_on) || a.number - b.number;
+  if (a.due_on) return -1;
+  if (b.due_on) return 1;
+  return a.number - b.number;
+}
+
+/** Deja el motivo en el log del build y sigue sin barras. */
 function skip(repo: string, reason: string): null {
-  console.warn(`[avance] ${repo}: ${reason}; se muestra sin barra.`);
+  console.warn(`[avance] ${repo}: ${reason}; se muestra sin barras.`);
   return null;
 }

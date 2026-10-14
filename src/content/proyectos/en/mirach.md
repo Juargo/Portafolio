@@ -6,5 +6,6 @@ stack:
   - React Native
   - PostgreSQL
   - Prisma
+repo: https://github.com/Juargo/mirach
 orden: 2
 ---

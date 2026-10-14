@@ -7,5 +7,6 @@ stack:
   - Expo
   - Supabase
   - AniList
+repo: https://github.com/Juargo/Acrux-Anime
 orden: 1
 ---

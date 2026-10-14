@@ -8,7 +8,7 @@ import Servicio from '../../components/Servicio.astro';
 import Timeline from '../../components/Timeline.astro';
 import Skills from '../../components/Skills.astro';
 import { useTranslations, byLang } from '../../i18n';
-import { getMilestoneProgress } from '../../lib/progress';
+import { getMilestones } from '../../lib/progress';
 import { GH_PROGRESS_TOKEN } from 'astro:env/server';
 import { locales } from '../../site';
 import type { Locale } from '../../site';
@@ -32,9 +32,7 @@ const proyectos = await Promise.all(
     .sort((a, b) => a.data.orden - b.data.orden)
     .map(async (proyecto) => ({
       ...proyecto.data,
-      avance: await getMilestoneProgress(proyecto.data.repo, proyecto.data.milestone, {
-        token: GH_PROGRESS_TOKEN,
-      }),
+      milestones: await getMilestones(proyecto.data.repo, { token: GH_PROGRESS_TOKEN }),
     })),
 );
 

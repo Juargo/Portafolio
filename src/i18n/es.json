@@ -93,8 +93,10 @@
     "stackLabel": "Tecnologías",
     "ver": "Ver proyecto",
     "repo": "Código",
-    "avance": "Avance",
-    "avanceLabel": "Avance de {titulo}",
-    "avanceDetalle": "{cerrados} de {total} issues cerrados"
+    "avance": "Avance por milestone",
+    "avanceLabel": "Avance de {titulo}, milestone {milestone}",
+    "avanceDetalle": "{cerrados} de {total} issues cerrados",
+    "milestoneCerrado": "cerrado",
+    "milestoneVence": "vence {fecha}"
   }
 }

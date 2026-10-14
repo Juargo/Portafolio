@@ -30,6 +30,7 @@ Las actas de reunión están en la bóveda de Obsidian, **fuera de este reposito
 - **Reunión 007** — planificación del Sprint 2: alcance, prioridad y orden de recorte, texto aprobado del servicio y bajada de la trayectoria.
 - **Reunión 008** — cierre del Sprint 2 (MVP completo) y alcance del Sprint 3 de pulido.
 - **Reunión 009** — cierre del Sprint 3 y alcance del Sprint 4 de contenido (niveles de skills y capturas).
+- **Reunión 010** — avance por todos los milestones de cada repositorio (ADR 0005) y metas de skills en texto en vez de niveles.
 
 Las decisiones técnicas (arquitectura, herramientas) se registran como ADR en `doc/ADRs/`, dentro del repositorio.
 
@@ -79,12 +80,13 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 
 **Sprint 3 cerrado** (5 de 5 pts, Reunión 009): asunto del correo en el pie, imagen para compartir en redes, enlaces de GitHub y LinkedIn, y el nombre de la app de finanzas (**Mirach**).
 
-**Sprint 4 en curso: contenido** (15 al 28 oct, 5 pts, Reunión 009). Excepción explícita a la regla del post-MVP:
+**Sprint 4 en curso: contenido** (15 al 28 oct, 8 pts, Reuniones 009 y 010). Excepción explícita a la regla del post-MVP:
 
-1. **P-18** Niveles de skills: `nivelActual` y `nivelMeta` (1 a 5) en cada skill. La sección ya los muestra cuando tienen valor. Depende de que Jorge defina los niveles.
-2. **P-19** Capturas de proyectos: una imagen opcional por proyecto, optimizada y con texto alternativo en los dos idiomas. Depende de que Jorge entregue las capturas; un proyecto sin captura se publica sin imagen.
+1. **P-20** Avance por todos los milestones de cada repositorio (Reunión 010, ADR 0005). Hecho en código; las barras aparecen cuando los repos tengan milestones con issues.
+2. **P-18** Metas de skills **en texto, sin escala numérica** (Reunión 010): una línea "hacia dónde voy" por skill, en los dos idiomas. Reemplaza a `nivelActual` y `nivelMeta`. Depende de que Jorge escriba las metas.
+3. **P-19** Capturas de proyectos: una imagen opcional por proyecto, optimizada y con texto alternativo en los dos idiomas. Depende de que Jorge entregue las capturas; un proyecto sin captura se publica sin imagen.
 
-**Configuración pendiente de P-13** (solo Jorge): `GH_PROGRESS_TOKEN` en Vercel, `VERCEL_DEPLOY_HOOK` en GitHub, y `repo`/`milestone` en cada proyecto (`es/` y `en/`). Ver Despliegue.
+**Configuración pendiente de P-13** (solo Jorge): `GH_PROGRESS_TOKEN` en Vercel, `VERCEL_DEPLOY_HOOK` en GitHub, y milestones con issues en los repos de Acrux y Mirach (el `repo` ya está cargado). Ver Despliegue.
 
 **Post-MVP:** P-12 (dominio propio), notas o blog.
 
@@ -99,7 +101,7 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 - **Barra de avance (P-13, ADR 0002):**
   - `GH_PROGRESS_TOKEN`: variable de entorno en Vercel (Production y Preview) con un fine-grained token de solo lectura (Issues y Metadata). Es opcional: sin ella, la API se consulta sin autenticar.
   - `VERCEL_DEPLOY_HOOK`: secreto del repositorio en GitHub con la URL del deploy hook de Vercel (rama `main`). Lo usa `.github/workflows/daily-rebuild.yml`, que recompila el sitio cada día a las 09:00 UTC y se puede disparar a mano.
-  - Para que un proyecto muestre la barra, su `.md` necesita `repo` (repositorio público) y `milestone` (título exacto del milestone). Si algo falla, el build lo informa con `[avance]` y el proyecto se publica sin barra.
+  - Para que un proyecto muestre barras, su `.md` necesita `repo` (repositorio público). La tarjeta muestra una barra por cada milestone del repositorio que tenga issues, ordenadas por fecha límite (ADR 0005). Si algo falla, el build lo informa con `[avance]` y el proyecto se publica sin barras.
 - **Versión de pnpm:** el proyecto tiene la variable `ENABLE_EXPERIMENTAL_COREPACK=1` en Production, Preview y Development. Con ella, Vercel usa la versión de `packageManager` en `package.json`; sin ella, elige pnpm 9 o 10 según el lockfile (ver ADR 0001).
 
 ---

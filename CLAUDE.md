@@ -29,6 +29,7 @@ Las actas de reunión están en la bóveda de Obsidian, **fuera de este reposito
 - **Reunión 006** — barra de avance de proyectos (P-13): milestone de GitHub por proyecto, calculado al compilar (ADR 0002).
 - **Reunión 007** — planificación del Sprint 2: alcance, prioridad y orden de recorte, texto aprobado del servicio y bajada de la trayectoria.
 - **Reunión 008** — cierre del Sprint 2 (MVP completo) y alcance del Sprint 3 de pulido.
+- **Reunión 009** — cierre del Sprint 3 y alcance del Sprint 4 de contenido (niveles de skills y capturas).
 
 Las decisiones técnicas (arquitectura, herramientas) se registran como ADR en `doc/ADRs/`, dentro del repositorio.
 
@@ -76,16 +77,16 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 
 **Sprint 2 cerrado** (22 de 22 pts, Reunión 008): servicio y contacto, responsive, SEO y rendimiento (Lighthouse 100), barra de avance, Skills y versión en inglés. **El MVP está completo.**
 
-**Sprint 3 en curso: pulido** (14 al 24 oct, 5 pts, Reunión 008):
+**Sprint 3 cerrado** (5 de 5 pts, Reunión 009): asunto del correo en el pie, imagen para compartir en redes, enlaces de GitHub y LinkedIn, y el nombre de la app de finanzas (**Mirach**).
 
-1. **P-14** Asunto prellenado en el enlace de correo del pie.
-2. **P-15** Imagen para compartir en redes (`og:image`), en los dos idiomas.
-3. **P-16** Enlaces de GitHub y LinkedIn en `src/site.ts`. Depende de las URL que entregue Jorge.
-4. **P-17** Nombre final de la app de finanzas, en los dos idiomas. Depende de Jorge.
+**Sprint 4 en curso: contenido** (15 al 28 oct, 5 pts, Reunión 009). Excepción explícita a la regla del post-MVP:
+
+1. **P-18** Niveles de skills: `nivelActual` y `nivelMeta` (1 a 5) en cada skill. La sección ya los muestra cuando tienen valor. Depende de que Jorge defina los niveles.
+2. **P-19** Capturas de proyectos: una imagen opcional por proyecto, optimizada y con texto alternativo en los dos idiomas. Depende de que Jorge entregue las capturas; un proyecto sin captura se publica sin imagen.
 
 **Configuración pendiente de P-13** (solo Jorge): `GH_PROGRESS_TOKEN` en Vercel, `VERCEL_DEPLOY_HOOK` en GitHub, y `repo`/`milestone` en cada proyecto (`es/` y `en/`). Ver Despliegue.
 
-**Post-MVP:** P-12 (dominio propio), niveles de skills, notas o blog, capturas de proyectos. Los campos `nivelActual` y `nivelMeta` de las skills existen pero van vacíos (Reunión 003).
+**Post-MVP:** P-12 (dominio propio), notas o blog.
 
 ---
 

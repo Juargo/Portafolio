@@ -56,6 +56,8 @@ El proyecto se lleva con **Agile**: cada tanda de trabajo se decide en una reuni
 
 Tipografía **Iosevka** (OFL), pesos 400 y 700, monoespaciada en todo el sitio. Va recortada a los caracteres que usa el sitio (ADR 0003): si el contenido suma un carácter nuevo, se agrega en `scripts/subset-fonts.sh` y se vuelve a ejecutar. Los tokens de color están en `src/styles/global.css`.
 
+**Imagen para compartir en redes** (`og:image`): `public/og/es.png` y `public/og/en.png`, de 1200×630, con la marca, el antetítulo y el título del hero. Si cambian esos textos, se regeneran con `node scripts/og-images.mjs` (requiere Google Chrome).
+
 Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 
 ---

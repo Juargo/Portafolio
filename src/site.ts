@@ -1,12 +1,11 @@
 /**
- * Datos del sitio. Completa los campos vacíos y aparecen solos en el pie.
+ * Datos del sitio. Los enlaces de correo, GitHub y LinkedIn aparecen solos en el pie; uno vacío no se muestra.
  */
 export const site = {
   author: 'Jorge Retamal',
   email: 'jorgeretamalaburto@gmail.com',
-  // Pendientes de contenido (Reunión 004): pega las URL y se renderizan.
-  github: '',
-  linkedin: '',
+  github: 'https://github.com/Juargo',
+  linkedin: 'https://www.linkedin.com/in/jorge-retamal-aburto-a9552060/',
 } as const;
 
 export const locales = ['es', 'en'] as const;

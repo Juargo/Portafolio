@@ -23,7 +23,7 @@ const social = [
     <p class="muted">© {year} {site.author} · {t.footer.rights}</p>
     <ul>
       {social.map((item) => (
-        <li><a href={item.href}>{item.label}</a></li>
+        <li><a href={item.href} rel={item.href.startsWith('http') ? 'me' : undefined}>{item.label}</a></li>
       ))}
     </ul>
   </div>

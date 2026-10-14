@@ -2,7 +2,8 @@
   "meta": {
     "title": "Jorge Retamal — Full stack developer",
     "description": "Full stack developer based in Santiago, Chile. 14 years of experience across support, QA, DevOps and development. Available for freelance projects.",
-    "locale": "en_US"
+    "locale": "en_US",
+    "ogImageAlt": "jorge.dev card: Jorge Retamal, full stack developer in Santiago, Chile. I build web products end to end."
   },
   "nav": {
     "brand": "jorge.dev",

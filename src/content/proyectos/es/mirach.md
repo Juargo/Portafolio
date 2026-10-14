@@ -1,5 +1,5 @@
 ---
-titulo: App de finanzas personales
+titulo: Mirach
 estado: diseno
 descripcion: Finanzas personales con un sistema de buckets, pensada para Chile. Versión web y móvil.
 stack:

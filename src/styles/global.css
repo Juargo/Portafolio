@@ -1,51 +1,72 @@
 /* ── Tipografía ──────────────────────────────────────────── */
-/* Iosevka recortada a los caracteres del sitio (scripts/subset-fonts.sh). */
+/* Figtree para títulos y Atkinson Hyperlegible para el texto, subconjunto
+   latino de @fontsource (ADR 0006). Atkinson está pensada para lectura fácil:
+   buena parte de quienes visitan el sitio son personas mayores. */
 @font-face {
-  font-family: 'Iosevka';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('../assets/fonts/iosevka-400.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Iosevka';
+  font-family: 'Figtree';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('../assets/fonts/iosevka-700.woff2') format('woff2');
+  src: url('../assets/fonts/figtree-latin-700-normal.woff2') format('woff2');
 }
 
-/* ── Tema Andrómeda ───────────────────────────────────────── */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../assets/fonts/figtree-latin-800-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2') format('woff2');
+}
+
+/* ── Tema "cercano y claro" ───────────────────────────────── */
 :root {
   /* Superficies */
-  --void: #0b0a14;
-  --nebula-dark: #14132a;
-  --border: #2c2a4a;
-  --divider: #1e1c38;
+  --cream: #fbf8f3;
+  --white: #ffffff;
+  --mint: #e8f1ee;
+  --line: #e2ddd4;
 
   /* Texto */
-  --lavender: #e8e6f5;
-  --stardust: #9a97b8;
+  --ink: #1f2421;
+  --ink-soft: #3e4541;
+  --muted: #5a615d;
+  --on-accent: #d7eae5;
 
-  /* Acentos */
-  --nebula: #8b7cf6;
-  --star: #f2b66d;
-  --aurora: #5ec8c0;
+  /* Acento */
+  --teal: #0f5e57;
+  --teal-dark: #0a403b;
 
   /* Tipografía */
-  --font: 'Iosevka', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --fs-display: clamp(2rem, 1.2rem + 3.6vw, 3.5rem);
-  --fs-h2: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
-  --fs-h3: 1.375rem;
-  --fs-body: 1rem;
-  --fs-small: 0.875rem;
+  --font-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-head: 'Figtree', system-ui, sans-serif;
+  --fs-display: clamp(2.5rem, 1.6rem + 3.6vw, 3.75rem);
+  --fs-h2: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+  --fs-h3: 1.5rem;
+  --fs-body: 1.125rem;
+  --fs-lede: clamp(1.1875rem, 1.1rem + 0.4vw, 1.3125rem);
+  --fs-small: 1rem;
 
   /* Ritmo */
-  --measure: 65ch;
+  --measure: 62ch;
   --gutter: 1.5rem;
-  --max: 65rem;
-  --radius: 10px;
+  --max: 75rem;
+  --radius: 24px;
 }
 
 *,
@@ -72,9 +93,9 @@ html {
 
 body {
   margin: 0;
-  background: var(--void);
-  color: var(--lavender);
-  font-family: var(--font);
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -84,8 +105,9 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-weight: 700;
-  line-height: 1.15;
+  font-family: var(--font-head);
+  font-weight: 800;
+  line-height: 1.1;
   letter-spacing: -0.01em;
 }
 
@@ -95,20 +117,20 @@ p {
 }
 
 a {
-  color: var(--nebula);
+  color: var(--teal);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
 a:hover,
 a:focus-visible {
-  color: var(--star);
+  color: var(--teal-dark);
 }
 
 :focus-visible {
-  outline: 2px solid var(--aurora);
+  outline: 3px solid var(--teal);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 img,
@@ -131,32 +153,32 @@ svg {
 }
 
 .section {
-  padding-block: 3.5rem;
-  border-top: 1px solid var(--divider);
-  gap: 1.75rem;
+  padding-block: clamp(4rem, 3rem + 4vw, 6rem);
 }
 
 .eyebrow {
-  color: var(--aurora);
-  font-size: var(--fs-small);
-  letter-spacing: 0.02em;
+  color: var(--teal);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .lede {
-  color: var(--stardust);
-  font-size: 1.125rem;
+  color: var(--ink-soft);
+  font-size: var(--fs-lede);
 }
 
 .muted {
-  color: var(--stardust);
+  color: var(--ink-soft);
 }
 
 .skip-link {
   position: absolute;
   left: -9999px;
   top: 0;
-  background: var(--nebula);
-  color: var(--void);
+  background: var(--teal);
+  color: var(--white);
   font-weight: 700;
   padding: 0.75rem 1.25rem;
   z-index: 10;
@@ -164,54 +186,44 @@ svg {
 
 .skip-link:focus {
   left: 0;
-  color: var(--void);
+  color: var(--white);
 }
 
-/* Botón principal: alto mínimo 44px para toque cómodo */
-.btn {
+/* Botones en forma de píldora: alto mínimo 44px para toque cómodo */
+.btn,
+.btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 0.625rem 1.5rem;
-  background: var(--nebula);
-  color: var(--void);
+  min-height: 48px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
   font-weight: 700;
-  font-family: inherit;
-  border: 1px solid var(--nebula);
-  border-radius: 6px;
+  font-size: 1.1875rem;
   text-decoration: none;
+  text-align: center;
+}
+
+.btn {
+  background: var(--teal);
+  border: 2px solid var(--teal);
+  color: var(--white);
 }
 
 .btn:hover,
 .btn:focus-visible {
-  background: var(--star);
-  border-color: var(--star);
-  color: var(--void);
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+  color: var(--white);
 }
 
-.btn-quiet {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0.625rem 0.25rem;
-  text-decoration: none;
+.btn-outline {
+  border: 2px solid var(--ink);
+  color: var(--ink);
 }
 
-/* Fichas de tecnología */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.tag {
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 0.125rem 0.875rem;
-  font-size: var(--fs-small);
-  color: var(--lavender);
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  background: var(--ink);
+  color: var(--white);
 }

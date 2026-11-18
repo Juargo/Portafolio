@@ -1,6 +1,6 @@
 # Portafolio — Jorge Retamal
 
-Landing page de portafolio personal. Astro + Vercel, bilingüe ES/EN, tema Andrómeda.
+Página de servicios de **Jorge te lo resuelve**: redes, software, IA, consultoría para adulto mayor, cámaras y domótica. Astro + Vercel, bilingüe ES/EN.
 
 ## Correr el proyecto
 
@@ -16,52 +16,33 @@ pnpm check        # tipos y accesibilidad
 
 ```
 src/
-  content/
-    proyectos/es/      un .md por proyecto
-    trayectoria/es/    un .md por etapa en Zweicom
-    skills/es/         un .md por skill
-  i18n/es.json         todos los textos de la interfaz
-  site.ts              correo, GitHub, LinkedIn
-  components/          Header, Hero, ProjectCard, Timeline, SectionHeading, Footer
+  i18n/es.json         todos los textos (servicios, pasos, contacto); en.json igual
+  site.ts              marca, WhatsApp, correo, LinkedIn
+  assets/jorge.jpg     foto del hero
+  assets/fonts/        Figtree y Atkinson Hyperlegible
+  components/          Header, Hero, Servicios, Como, Contacto, Footer
   layouts/Base.astro   <head>, header y pie
   pages/
     index.astro        raíz: salta a /es/
-    es/index.astro     la landing
-  styles/global.css    tokens Andrómeda y utilidades
+    [lang]/index.astro la página, en /es/ y /en/
+  styles/global.css    tokens "cercano y claro" y utilidades
 ```
 
-**Para agregar un proyecto** no hace falta tocar código: crea un `.md` en
-`src/content/proyectos/es/` con este frontmatter.
-
-```yaml
----
-titulo: Nombre del proyecto
-estado: idea | diseno | desarrollo | publicado
-nota: meta 28 oct        # opcional
-descripcion: Una o dos frases.
-stack: [Astro, Supabase]
-enlace: https://…        # opcional
-repo: https://…          # opcional
-orden: 4
----
-```
-
-El esquema de cada colección vive en `src/content.config.ts`; si un campo no
-calza, el build falla y te dice cuál.
+**Para agregar o cambiar un servicio** no hace falta tocar código: edita
+`servicios.items` en `src/i18n/es.json` y `en.json`. Cada servicio tiene
+`icono` (red, software, ia, adultoMayor, camara o domotica), `titulo` y `texto`.
 
 ## Sistema visual
 
-Tipografía **Iosevka** (OFL), autoalojada vía `@fontsource/iosevka`, pesos 400 y 700.
+Títulos en **Figtree** y texto en **Atkinson Hyperlegible** (ADR 0006).
 
 | Rol | Variable | Hex |
 |---|---|---|
-| Fondo | `--void` | `#0b0a14` |
-| Tarjetas | `--nebula-dark` | `#14132a` |
-| Texto | `--lavender` | `#e8e6f5` |
-| Texto secundario | `--stardust` | `#9a97b8` |
-| Acento principal | `--nebula` | `#8b7cf6` |
-| Estados y fechas | `--star` | `#f2b66d` |
-| Etiquetas de sección | `--aurora` | `#5ec8c0` |
+| Fondo | `--cream` | `#fbf8f3` |
+| Tarjetas | `--white` / `--mint` | `#ffffff` / `#e8f1ee` |
+| Texto | `--ink` | `#1f2421` |
+| Texto secundario | `--ink-soft` | `#3e4541` |
+| Acento | `--teal` | `#0f5e57` |
 
 ## Idiomas
 
@@ -69,10 +50,7 @@ Tipografía **Iosevka** (OFL), autoalojada vía `@fontsource/iosevka`, pesos 400
 La raíz redirige a `/es/`: al instante en Vercel vía `vercel.json`, y con
 `src/pages/index.astro` como respaldo en local.
 
-El inglés llega en el Sprint 2 (P-08): hay que crear `src/i18n/en.json`,
-apuntarlo en `src/i18n/index.ts`, duplicar el contenido en carpetas `en/` y
-crear `src/pages/en/index.astro`. El selector de idioma del header aparece solo
-cuando se le pasa `altLang`.
+Los textos de los dos idiomas viven en `src/i18n/es.json` y `en.json`, con las mismas claves.
 
 ## Desplegar en Vercel
 
@@ -83,10 +61,7 @@ cuando se le pasa `altLang`.
 
 ## Pendientes
 
-- Texto de la sección Servicio (P-06).
-- Traducciones al inglés (P-08).
-- GitHub y LinkedIn en `src/site.ts`.
-- Niveles de skills (postergado en la Reunión 003).
+- Decidir qué hacer con las colecciones de `src/content/` y la barra de avance, que ya no se muestran.
 - Dominio propio (P-12).
 
 Las decisiones y el backlog están en la bóveda de Obsidian, en

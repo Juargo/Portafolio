@@ -21,6 +21,12 @@ export function mailtoHref(lang: Locale): string {
   return `mailto:${site.email}?subject=${subject}&body=${body}`;
 }
 
+/** Enlace a WhatsApp con un mensaje inicial prellenado en el idioma de la página. */
+export function whatsappHref(lang: Locale): string {
+  const t = useTranslations(lang);
+  return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(t.whatsapp.mensaje)}`;
+}
+
 /** Filtra una colección por el idioma, según la subcarpeta del archivo. */
 export function byLang<T extends { id: string }>(entries: T[], lang: Locale): T[] {
   return entries.filter((entry) => entry.id.startsWith(`${lang}/`));

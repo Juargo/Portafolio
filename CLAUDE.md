@@ -2,16 +2,23 @@
 
 ## ¿Qué es este proyecto?
 
-Landing page de portafolio personal de Jorge Retamal. Su objetivo doble:
+**Desde noviembre de 2026** es la página de servicios de **Jorge te lo resuelve**, el negocio de soluciones tecnológicas de Jorge Retamal, para casas y negocios. Es una sola página con seis servicios:
 
-1. **Conseguir clientes freelance.** Esa es la audiencia principal, no reclutadores. El servicio que se ofrece es uno solo: **desarrollo full stack**.
-2. **Servir de guía propia** sobre los proyectos y skills que tiene y los que quiere mejorar.
+1. Instalación y configuración de redes
+2. Soluciones de software (aplicaciones a la medida)
+3. Soluciones de IA
+4. Consultoría para adulto mayor
+5. Instalación de cámaras
+6. Configuración de domótica
 
-El relato central es una carrera de **14 años en una sola empresa (Zweicom, 2012–2026)**, contada como capas de responsabilidad que se suman —soporte, QA, DevOps, desarrollo— y no como empleos sueltos.
+Buena parte del público son **personas mayores del barrio**: el texto tiene que leerse fácil y el tono es cercano, sin jerga. La página no nombra la comuna ni dice "vecino"; la zona se indica al compartir el enlace.
+
+La trayectoria en Zweicom ya no va en el sitio: va en el CV. Antes de noviembre el sitio era un portafolio de desarrollador freelance (secciones Ahora, Servicio, Trayectoria y Skills, tema Andrómeda con Iosevka); ese código está en el historial de git.
 
 **Stack:** Astro + Vercel, sitio estático, bilingüe ES/EN.
-**Referencia de estructura:** https://pasho.dev/ (página lineal, sin menú, fondo oscuro).
-**Contacto:** solo correo (`mailto:`). No hay formulario ni backend, y el MVP no los lleva.
+**Diseño de referencia:** canvas "Web de servicios tecnológicos — propuestas" en Claude Design, opción **A · Cercano y claro**.
+**Contacto:** WhatsApp (`wa.me`, con mensaje prellenado) y correo (`mailto:`). No hay formulario ni backend.
+**Precio publicado:** diagnóstico $10.000, gratis si se aprueba el presupuesto.
 
 ---
 
@@ -40,7 +47,7 @@ El proyecto se lleva con **Agile**: cada tanda de trabajo se decide en una reuni
 
 ## Reglas del proyecto
 
-**El contenido no se escribe en los componentes.** Un proyecto, una etapa de la trayectoria o una skill se agregan creando un `.md` en `src/content/`. Un texto de interfaz se agrega a `src/i18n/es.json`. Si estás por escribir una cadena en español dentro de un `.astro`, va en el JSON: de lo contrario el inglés queda sin traducir.
+**El contenido no se escribe en los componentes.** Los servicios, los pasos de "Cómo trabajo" y todos los textos viven en `src/i18n/es.json` y `en.json`; un servicio nuevo es un elemento más en `servicios.items` (su ícono se elige con `icono`, definido en `src/components/Servicios.astro`). Los datos de contacto viven en `src/site.ts`. Si estás por escribir una cadena en español dentro de un `.astro`, va en el JSON: de lo contrario el inglés queda sin traducir.
 
 **Las secciones se declaran una sola vez.** `src/pages/[lang]/index.astro` (una sola página para los dos idiomas) tiene un arreglo `sections` que numera los encabezados y alimenta la navegación. Agregar una sección significa agregarla ahí; así nunca hay anclas muertas ni saltos de numeración.
 
@@ -56,11 +63,13 @@ El proyecto se lleva con **Agile**: cada tanda de trabajo se decide en una reuni
 
 ## Sistema visual
 
-Tipografía **Iosevka** (OFL), pesos 400 y 700, monoespaciada en todo el sitio. Va recortada a los caracteres que usa el sitio (ADR 0003): si el contenido suma un carácter nuevo, se agrega en `scripts/subset-fonts.sh` y se vuelve a ejecutar. Los tokens de color están en `src/styles/global.css`.
+Estilo **"cercano y claro"**: fondo crema, tarjetas blancas y menta, un solo acento verde azulado, botones en forma de píldora y texto de 18 px como base. Los tokens de color están en `src/styles/global.css`.
 
-**Imagen para compartir en redes** (`og:image`): `public/og/es.png` y `public/og/en.png`, de 1200×630, con la marca, el antetítulo y el título del hero. Si cambian esos textos, se regeneran con `node scripts/og-images.mjs` (requiere Google Chrome).
+Tipografías (ADR 0006): **Figtree** 700/800 para títulos y **Atkinson Hyperlegible** 400/700 para el texto, subconjunto latino de `@fontsource`, en `src/assets/fonts/`.
 
-Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
+La foto de Jorge está en `src/assets/jorge.jpg` y se optimiza con `astro:assets` (requiere `sharp`).
+
+**Imagen para compartir en redes** (`og:image`): `public/og/es.png` y `public/og/en.png`, de 1200×630, con la marca, el antetítulo, el título del hero y la foto. Si cambian esos textos, se regeneran con `node scripts/og-images.mjs` (requiere Google Chrome o `CHROME_PATH`).
 
 ---
 
@@ -74,21 +83,13 @@ Las apps de Jorge llevan nombres de estrellas de Andrómeda; de ahí el tema.
 
 ## Estado actual
 
-**Sprint 1 cerrado** (P-01 a P-05 y P-07): proyecto, tipografía y tokens, layout, hero, sección Ahora y Trayectoria. Compila sin errores.
+**Giro a servicios (18 nov 2026), rama `feat/web-servicios`.** La página quedó con Hero (foto, 14+ años, a domicilio, precio del diagnóstico), Servicios, Cómo trabajo y Contacto, en los dos idiomas. Se eliminaron los componentes de Ahora, Servicio, Trayectoria y Skills.
 
-**Sprint 2 cerrado** (22 de 22 pts, Reunión 008): servicio y contacto, responsive, SEO y rendimiento (Lighthouse 100), barra de avance, Skills y versión en inglés. **El MVP está completo.**
+Quedan en el repositorio sin usarse en la página: las colecciones de `src/content/` (proyectos, trayectoria, skills), `src/lib/progress.ts` (barra de avance, ADR 0002/0005) y el workflow `daily-rebuild.yml`. Hay que decidir si se borran o se reutilizan.
 
-**Sprint 3 cerrado** (5 de 5 pts, Reunión 009): asunto del correo en el pie, imagen para compartir en redes, enlaces de GitHub y LinkedIn, y el nombre de la app de finanzas (**Mirach**).
+**Pendiente de registrar:** el giro a servicios es una decisión de producto que aún no tiene acta en Obsidian (Reunión 011).
 
-**Sprint 4 en curso: contenido** (15 al 28 oct, 8 pts, Reuniones 009 y 010). Excepción explícita a la regla del post-MVP:
-
-1. **P-20** Avance por todos los milestones de cada repositorio (Reunión 010, ADR 0005). Hecho en código; las barras aparecen cuando los repos tengan milestones con issues.
-2. **P-18** Metas de skills **en texto, sin escala numérica** (Reunión 010): una línea "hacia dónde voy" por skill, en los dos idiomas. Reemplaza a `nivelActual` y `nivelMeta`. Depende de que Jorge escriba las metas.
-3. **P-19** Capturas de proyectos: una imagen opcional por proyecto, optimizada y con texto alternativo en los dos idiomas. Depende de que Jorge entregue las capturas; un proyecto sin captura se publica sin imagen.
-
-**Configuración pendiente de P-13** (solo Jorge): `GH_PROGRESS_TOKEN` en Vercel, `VERCEL_DEPLOY_HOOK` en GitHub, y milestones con issues en los repos de Acrux y Mirach (el `repo` ya está cargado). Ver Despliegue.
-
-**Post-MVP:** P-12 (dominio propio), notas o blog.
+**Post-MVP:** P-12 (dominio propio).
 
 ---
 

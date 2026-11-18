@@ -1,102 +1,100 @@
 {
   "meta": {
-    "title": "Jorge Retamal — Full stack developer",
-    "description": "Full stack developer based in Santiago, Chile. 14 years of experience across support, QA, DevOps and development. Available for freelance projects.",
+    "title": "Jorge te lo resuelve — Tech solutions for your home and business",
+    "description": "Home and office networks, security cameras, smart home, custom software, AI solutions and patient tech help for older adults. On-site service in Santiago, Chile.",
     "locale": "en_US",
-    "ogImageAlt": "jorge.dev card: Jorge Retamal, full stack developer in Santiago, Chile. I build web products end to end."
+    "ogImageAlt": "Jorge te lo resuelve card: technology that works, explained calmly. Networks, cameras, smart home, software, AI and help for older adults."
   },
   "nav": {
-    "brand": "jorge.dev",
-    "ahora": "now",
-    "servicio": "service",
-    "trayectoria": "career",
-    "skills": "skills",
+    "servicios": "Services",
+    "como": "How I work",
+    "contacto": "Contact",
+    "cta": "Message me",
     "skip": "Skip to content",
     "langLabel": "Language",
     "sectionsLabel": "Sections"
   },
   "hero": {
-    "eyebrow": "// full stack developer · Santiago, Chile",
-    "title": "I build web products end to end.",
-    "lede": "14 years growing inside one company: support, QA, DevOps and development. Today I build my own projects and take on freelance work.",
-    "cta": "Send me an email",
-    "ctaSecondary": "See what I'm building now"
+    "eyebrow": "For your home and your business",
+    "title": "Technology that works, explained calmly.",
+    "lede": "I set up networks, cameras and smart homes, build custom software and help older adults feel safe with their technology.",
+    "cta": "Request a diagnosis",
+    "ctaSecondary": "See services",
+    "saludo": "Hi, I'm Jorge",
+    "saludoTexto": "Software developer. I help you in person, with patience.",
+    "fotoAlt": "Photo of Jorge, smiling",
+    "experiencia": "14+",
+    "experienciaTexto": "years in IT",
+    "domicilio": "On-site",
+    "domicilioTexto": "I come to your home or office",
+    "diagnostico": "Diagnosis CLP $10,000, free if you approve the quote. No fine print."
   },
-  "ahora": {
-    "eyebrow": "now",
-    "title": "What I'm building",
-    "lede": "My own projects, at different stages."
+  "servicios": {
+    "title": "Services",
+    "lede": "Pick what you need. If you are not sure where to start, tell me the problem and we will work it out together.",
+    "items": [
+      {
+        "icono": "red",
+        "titulo": "Networks and internet",
+        "texto": "Network installation and setup. Wi‑Fi that reaches every room of your home or office: routers, extenders, mesh systems, cabling and security."
+      },
+      {
+        "icono": "software",
+        "titulo": "Software solutions",
+        "texto": "Custom applications for your business: websites, mobile apps, internal systems and automation of repetitive tasks."
+      },
+      {
+        "icono": "ia",
+        "titulo": "AI solutions",
+        "texto": "Assistants and automations powered by artificial intelligence to answer customers, organize documents and save hours of work."
+      },
+      {
+        "icono": "adultoMayor",
+        "titulo": "Tech help for older adults",
+        "texto": "Patient guidance to use the phone, WhatsApp, video calls and online services, and to spot scams."
+      },
+      {
+        "icono": "camara",
+        "titulo": "Camera installation",
+        "texto": "Security cameras you can watch from your phone, with recording and alerts. I help you choose the right equipment for your space."
+      },
+      {
+        "icono": "domotica",
+        "titulo": "Smart home",
+        "texto": "Smart home setup: lights, plugs, voice assistants and automatic routines you control from your phone."
+      }
+    ]
   },
-  "servicio": {
-    "eyebrow": "service",
-    "title": "Full stack development for your project",
-    "lede": "I help small businesses get their first web application: from understanding what you need to having it live and running.",
+  "como": {
+    "title": "How I work",
     "pasos": [
       {
-        "titulo": "Understand your business.",
-        "texto": "We talk through what you need and turn it into concrete features, without technical jargon."
+        "titulo": "Tell me what you need",
+        "texto": "By WhatsApp or a call. No jargon: describe the problem in your own words."
       },
       {
-        "titulo": "Design and build.",
-        "texto": "Interface and the complete system, frontend and backend, tested before delivery."
+        "titulo": "Diagnosis and quote",
+        "texto": "I review your case and propose a solution with a fixed price before starting."
       },
       {
-        "titulo": "Launch.",
-        "texto": "I put it online, with its own domain and ready for your customers to use."
-      },
-      {
-        "titulo": "Support you afterwards.",
-        "texto": "Maintenance and support once the application is in use."
+        "titulo": "I leave it working",
+        "texto": "I install it, test it with you and show you how to use it. I stay available for questions."
       }
-    ],
-    "tagsLabel": "Technologies and practices",
-    "tags": [
-      "Angular",
-      "Node.js",
-      "TypeScript",
-      "PostgreSQL",
-      "MySQL",
-      "MariaDB",
-      "Cloud deployment",
-      "Automated testing"
-    ],
-    "cierre": "Have an idea for your business? Tell me about it by email and I'll reply with the next steps.",
-    "cta": "Send me an email",
-    "contactLabel": "Contact"
+    ]
   },
-  "trayectoria": {
-    "eyebrow": "career",
-    "title": "14 years, one company, four layers",
-    "lede": "Zweicom · 2012 – 2026. Support, QA, DevOps and development: each stage added a layer I use today when I build."
-  },
-  "skills": {
-    "eyebrow": "skills",
-    "title": "Where I am and where I'm going",
-    "nivelActual": "Now: {n}/5",
-    "nivelMeta": "Goal: {n}/5"
-  },
-  "estado": {
-    "idea": "Idea",
-    "diseno": "In design",
-    "desarrollo": "In development",
-    "publicado": "Live"
+  "contacto": {
+    "title": "Shall we talk?",
+    "texto": "Message me and I will reply the same day. The diagnosis costs CLP $10,000 and is free if you approve the quote.",
+    "whatsapp": "WhatsApp"
   },
   "footer": {
-    "rights": "Made in Santiago, Chile",
-    "email": "email"
+    "email": "Email"
+  },
+  "whatsapp": {
+    "mensaje": "Hi Jorge, I saw your website and I need help with "
   },
   "mailto": {
-    "subject": "Freelance project",
+    "subject": "Service inquiry",
     "body": "Hi Jorge,"
-  },
-  "proyecto": {
-    "stackLabel": "Technologies",
-    "ver": "View project",
-    "repo": "Code",
-    "avance": "Progress by milestone",
-    "avanceLabel": "{titulo} progress, milestone {milestone}",
-    "avanceDetalle": "{cerrados} of {total} issues closed",
-    "milestoneCerrado": "closed",
-    "milestoneVence": "due {fecha}"
   }
 }

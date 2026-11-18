@@ -1,0 +1,99 @@
+---
+import { useTranslations, mailtoHref, whatsappHref } from '../i18n';
+import { site } from '../site';
+import type { Locale } from '../site';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="caja">
+  <div class="texto stack">
+    <h2 id="contacto-titulo">{t.contacto.title}</h2>
+    <p>{t.contacto.texto}</p>
+  </div>
+  <div class="acciones stack">
+    <a class="whatsapp" href={whatsappHref(lang)}>{t.contacto.whatsapp} {site.whatsappDisplay}</a>
+    <a class="correo" href={mailtoHref(lang)}>{site.email}</a>
+  </div>
+</div>
+
+<style>
+  .caja {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: clamp(2rem, 1.2rem + 3vw, 4rem) clamp(1.5rem, 1rem + 2.5vw, 3rem);
+    border-radius: 32px;
+    background: var(--teal);
+    color: var(--white);
+  }
+
+  .texto {
+    flex: 1 1 26rem;
+    min-width: 0;
+    gap: 0.75rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 1.6rem + 1.4vw, 2.5rem);
+  }
+
+  .texto p {
+    color: var(--on-accent);
+    font-size: var(--fs-lede);
+  }
+
+  .acciones {
+    flex: 0 1 auto;
+    min-width: 0;
+    gap: 0.75rem;
+  }
+
+  .acciones a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.875rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .whatsapp {
+    background: var(--white);
+    color: var(--teal);
+    font-size: 1.25rem;
+  }
+
+  .whatsapp:hover,
+  .whatsapp:focus-visible {
+    background: var(--mint);
+    color: var(--teal-dark);
+  }
+
+  .correo {
+    border: 2px solid var(--white);
+    color: var(--white);
+    font-size: 1.0625rem;
+  }
+
+  .correo:hover,
+  .correo:focus-visible {
+    background: var(--teal-dark);
+    color: var(--white);
+  }
+
+  .caja :focus-visible {
+    outline-color: var(--white);
+  }
+</style>

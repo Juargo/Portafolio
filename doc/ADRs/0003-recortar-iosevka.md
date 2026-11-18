@@ -1,6 +1,6 @@
 # ADR 0003 — Recortar Iosevka a los caracteres del sitio
 
-- **Estado:** Aceptada
+- **Estado:** Reemplazada por ADR 0006
 - **Fecha:** 2026-10-13
 
 ## Contexto

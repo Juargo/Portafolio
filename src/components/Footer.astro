@@ -1,5 +1,5 @@
 ---
-import { useTranslations, mailtoHref } from '../i18n';
+import { useTranslations, mailtoHref, whatsappHref } from '../i18n';
 import { site } from '../site';
 import type { Locale } from '../site';
 
@@ -11,43 +11,41 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
 
-const social = [
+const links = [
+  { href: whatsappHref(lang), label: site.whatsappDisplay },
   { href: mailtoHref(lang), label: t.footer.email },
-  { href: site.github, label: 'GitHub' },
   { href: site.linkedin, label: 'LinkedIn' },
 ].filter((item) => item.href.length > 0);
 ---
 
-<footer>
-  <div class="wrap bar">
-    <p class="muted">© {year} {site.author} · {t.footer.rights}</p>
+<footer class="wrap">
+  <div class="bar">
+    <p>© {year} {site.brand}</p>
     <ul>
-      {social.map((item) => (
-        <li><a href={item.href} rel={item.href.startsWith('http') ? 'me' : undefined}>{item.label}</a></li>
+      {links.map((item) => (
+        <li><a href={item.href} rel={item.href.startsWith('https://www.linkedin') ? 'me' : undefined}>{item.label}</a></li>
       ))}
     </ul>
   </div>
 </footer>
 
 <style>
-  footer {
-    border-top: 1px solid var(--divider);
-  }
-
   .bar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding-block: 2.5rem 3.5rem;
+    padding-block: 2rem 3rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
     font-size: var(--fs-small);
   }
 
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.25rem;
+    gap: 0.5rem 1.25rem;
     margin: 0;
     padding: 0;
     list-style: none;

@@ -1,102 +1,100 @@
 {
   "meta": {
-    "title": "Jorge Retamal — Desarrollador full stack",
-    "description": "Desarrollador full stack en Santiago de Chile. 14 años de experiencia en soporte, QA, DevOps y desarrollo. Disponible para proyectos freelance.",
+    "title": "Jorge te lo resuelve — Soluciones tecnológicas para tu casa y tu negocio",
+    "description": "Redes e internet, cámaras de seguridad, domótica, software a la medida, soluciones de IA y acompañamiento tecnológico para personas mayores. Atención a domicilio en Santiago.",
     "locale": "es_CL",
-    "ogImageAlt": "Tarjeta de jorge.dev: Jorge Retamal, desarrollador full stack en Santiago, Chile. Construyo productos web de punta a punta."
+    "ogImageAlt": "Tarjeta de Jorge te lo resuelve: tecnología que funciona, explicada con calma. Redes, cámaras, domótica, software, IA y adulto mayor."
   },
   "nav": {
-    "brand": "jorge.dev",
-    "ahora": "ahora",
-    "servicio": "servicio",
-    "trayectoria": "trayectoria",
-    "skills": "skills",
+    "servicios": "Servicios",
+    "como": "Cómo trabajo",
+    "contacto": "Contacto",
+    "cta": "Escríbeme",
     "skip": "Ir al contenido",
     "langLabel": "Idioma",
     "sectionsLabel": "Secciones"
   },
   "hero": {
-    "eyebrow": "// desarrollador full stack · Santiago, Chile",
-    "title": "Construyo productos web de punta a punta.",
-    "lede": "14 años creciendo dentro de una misma empresa: soporte, QA, DevOps y desarrollo. Hoy construyo mis propios proyectos y tomo proyectos freelance.",
-    "cta": "Escríbeme un correo",
-    "ctaSecondary": "Ver lo que construyo ahora"
+    "eyebrow": "Para tu casa y tu negocio",
+    "title": "Tecnología que funciona, explicada con calma.",
+    "lede": "Instalo redes, cámaras y casa inteligente, desarrollo software a la medida y ayudo a personas mayores a sentirse seguras con su tecnología.",
+    "cta": "Pide un diagnóstico",
+    "ctaSecondary": "Ver servicios",
+    "saludo": "Hola, soy Jorge",
+    "saludoTexto": "Desarrollador de software. Te ayudo en persona, con paciencia.",
+    "fotoAlt": "Foto de Jorge, sonriendo",
+    "experiencia": "14+",
+    "experienciaTexto": "años en TI",
+    "domicilio": "A domicilio",
+    "domicilioTexto": "voy a tu casa u oficina",
+    "diagnostico": "Diagnóstico $10.000, gratis si apruebas el presupuesto. Sin letra chica."
   },
-  "ahora": {
-    "eyebrow": "ahora",
-    "title": "Lo que estoy construyendo",
-    "lede": "Proyectos propios, en distintas etapas."
+  "servicios": {
+    "title": "Servicios",
+    "lede": "Elige lo que necesitas. Si no sabes por dónde empezar, cuéntame el problema y lo vemos juntos.",
+    "items": [
+      {
+        "icono": "red",
+        "titulo": "Redes e internet",
+        "texto": "Instalación y configuración de redes. Wi‑Fi que llega a toda la casa u oficina: routers, repetidores, sistemas en malla, cableado y seguridad."
+      },
+      {
+        "icono": "software",
+        "titulo": "Soluciones de software",
+        "texto": "Aplicaciones a la medida para tu negocio: sitios web, apps móviles, sistemas internos y automatización de tareas repetitivas."
+      },
+      {
+        "icono": "ia",
+        "titulo": "Soluciones de IA",
+        "texto": "Asistentes y automatizaciones con inteligencia artificial para responder clientes, ordenar documentos y ahorrar horas de trabajo."
+      },
+      {
+        "icono": "adultoMayor",
+        "titulo": "Consultoría para adulto mayor",
+        "texto": "Acompañamiento paciente para usar el celular, WhatsApp, videollamadas y trámites en línea, y para reconocer estafas."
+      },
+      {
+        "icono": "camara",
+        "titulo": "Instalación de cámaras",
+        "texto": "Cámaras de seguridad con vista desde el celular, grabación y alertas. Te ayudo a elegir el equipo correcto para tu espacio."
+      },
+      {
+        "icono": "domotica",
+        "titulo": "Domótica",
+        "texto": "Configuración de casa inteligente: luces, enchufes, asistentes de voz y rutinas automáticas que se controlan desde el teléfono."
+      }
+    ]
   },
-  "servicio": {
-    "eyebrow": "servicio",
-    "title": "Desarrollo full stack para tu proyecto",
-    "lede": "Ayudo a pymes a tener su primera aplicación web: desde entender lo que necesitas hasta dejarla publicada y funcionando.",
+  "como": {
+    "title": "Cómo trabajo",
     "pasos": [
       {
-        "titulo": "Entender tu negocio.",
-        "texto": "Conversamos lo que necesitas y lo bajamos a funcionalidades concretas, sin jerga técnica."
+        "titulo": "Me cuentas qué necesitas",
+        "texto": "Por WhatsApp o llamada. Sin tecnicismos: explícame el problema con tus palabras."
       },
       {
-        "titulo": "Diseñar y construir.",
-        "texto": "Interfaz y sistema completo, frontend y backend, probado antes de entregarlo."
+        "titulo": "Diagnóstico y presupuesto",
+        "texto": "Reviso tu caso y te propongo una solución con un precio cerrado antes de empezar."
       },
       {
-        "titulo": "Publicar.",
-        "texto": "La dejo en internet, con su dominio y lista para que tus clientes la usen."
-      },
-      {
-        "titulo": "Acompañarte después.",
-        "texto": "Mantenimiento y soporte cuando la aplicación ya está en uso."
+        "titulo": "Lo dejo funcionando",
+        "texto": "Instalo, pruebo contigo y te explico cómo usarlo. Quedo disponible para dudas."
       }
-    ],
-    "tagsLabel": "Tecnologías y prácticas",
-    "tags": [
-      "Angular",
-      "Node.js",
-      "TypeScript",
-      "PostgreSQL",
-      "MySQL",
-      "MariaDB",
-      "Despliegue en la nube",
-      "Pruebas automatizadas"
-    ],
-    "cierre": "¿Tienes una idea para tu negocio? Cuéntamela por correo y te respondo con los próximos pasos.",
-    "cta": "Escríbeme un correo",
-    "contactLabel": "Contacto"
+    ]
   },
-  "trayectoria": {
-    "eyebrow": "trayectoria",
-    "title": "14 años, una empresa, cuatro capas",
-    "lede": "Zweicom · 2012 – 2026. Soporte, QA, DevOps y desarrollo: cada etapa sumó una capa que hoy uso al desarrollar."
-  },
-  "skills": {
-    "eyebrow": "skills",
-    "title": "Dónde estoy y hacia dónde voy",
-    "nivelActual": "Hoy: {n}/5",
-    "nivelMeta": "Meta: {n}/5"
-  },
-  "estado": {
-    "idea": "Idea",
-    "diseno": "En diseño",
-    "desarrollo": "En desarrollo",
-    "publicado": "Publicado"
+  "contacto": {
+    "title": "¿Conversamos?",
+    "texto": "Escríbeme y te respondo el mismo día. El diagnóstico cuesta $10.000 y es gratis si apruebas el presupuesto.",
+    "whatsapp": "WhatsApp"
   },
   "footer": {
-    "rights": "Hecho en Santiago, Chile",
-    "email": "correo"
+    "email": "Correo"
+  },
+  "whatsapp": {
+    "mensaje": "Hola Jorge, vi tu página y necesito ayuda con "
   },
   "mailto": {
-    "subject": "Proyecto freelance",
+    "subject": "Consulta por servicio",
     "body": "Hola Jorge,"
-  },
-  "proyecto": {
-    "stackLabel": "Tecnologías",
-    "ver": "Ver proyecto",
-    "repo": "Código",
-    "avance": "Avance por milestone",
-    "avanceLabel": "Avance de {titulo}, milestone {milestone}",
-    "avanceDetalle": "{cerrados} de {total} issues cerrados",
-    "milestoneCerrado": "cerrado",
-    "milestoneVence": "vence {fecha}"
   }
 }

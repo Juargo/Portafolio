@@ -1,8 +1,9 @@
 ---
-import { useTranslations } from '../i18n';
+import { useTranslations, whatsappHref } from '../i18n';
+import { site } from '../site';
 import type { Locale } from '../site';
 
-type SectionId = 'ahora' | 'servicio' | 'trayectoria' | 'skills';
+type SectionId = 'servicios' | 'como' | 'contacto';
 
 interface Props {
   lang: Locale;
@@ -14,12 +15,20 @@ interface Props {
 const { lang, altLang, sections = [] } = Astro.props;
 const t = useTranslations(lang);
 
-const links = sections.map((id) => ({ href: `#${id}`, label: t.nav[id] }));
+// "Contacto" no va en el menú: el botón "Escríbeme" cumple ese papel.
+const links = sections
+  .filter((id) => id !== 'contacto')
+  .map((id) => ({ href: `#${id}`, label: t.nav[id] }));
 ---
 
 <header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href={`/${lang}/`}>{t.nav.brand}</a>
+    <a class="brand" href={`/${lang}/`}>
+      <span class="logo" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"></path></svg>
+      </span>
+      {site.brand}
+    </a>
     <nav aria-label={t.nav.sectionsLabel}>
       <ul>
         {links.map((link) => (
@@ -32,33 +41,43 @@ const links = sections.map((id) => ({ href: `#${id}`, label: t.nav[id] }));
             </a>
           </li>
         )}
+        <li><a class="cta" href={whatsappHref(lang)}>{t.nav.cta}</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <style>
-  .site-header {
-    border-bottom: 1px solid var(--divider);
-  }
-
   .bar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding-block: 1.25rem;
+    padding-block: 1.5rem;
   }
 
   .brand {
-    color: var(--lavender);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    min-height: 44px;
     display: inline-flex;
     align-items: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    color: var(--ink);
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.25rem;
+    text-decoration: none;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--teal);
+    color: var(--white);
   }
 
   nav ul {
@@ -69,10 +88,8 @@ const links = sections.map((id) => ({ href: `#${id}`, label: t.nav[id] }));
     margin: 0;
     padding: 0;
     list-style: none;
-    font-size: var(--fs-small);
   }
 
-  /* En pantallas angostas, menos aire para que los enlaces y el selector de idioma quepan en una línea. */
   @media (max-width: 30rem) {
     nav ul {
       column-gap: 0.875rem;
@@ -85,6 +102,7 @@ const links = sections.map((id) => ({ href: `#${id}`, label: t.nav[id] }));
     justify-content: center;
     min-width: 44px;
     min-height: 44px;
+    font-weight: 700;
     text-decoration: none;
   }
 
@@ -94,9 +112,23 @@ const links = sections.map((id) => ({ href: `#${id}`, label: t.nav[id] }));
   }
 
   .lang {
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    border: 2px solid var(--line);
+    border-radius: 8px;
     padding-inline: 0.625rem;
-    color: var(--stardust);
+    color: var(--ink-soft);
+  }
+
+  .cta {
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    background: var(--teal);
+    color: var(--white);
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    background: var(--teal-dark);
+    color: var(--white);
+    text-decoration: none;
   }
 </style>

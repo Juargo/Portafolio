@@ -12,38 +12,36 @@ import { locales, site } from '../src/site.ts';
 const root = resolve(import.meta.dirname, '..');
 const chrome =
   process.env.CHROME_PATH ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const font = (weight) => pathToFileURL(join(root, `src/assets/fonts/iosevka-${weight}.woff2`)).href;
+const font = (file) => pathToFileURL(join(root, `src/assets/fonts/${file}.woff2`)).href;
+const photo = pathToFileURL(join(root, 'src/assets/jorge.jpg')).href;
 const escape = (text) =>
   text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 const template = (t) => `<!doctype html>
 <html><head><meta charset="utf-8"><style>
-  @font-face { font-family: 'Iosevka'; font-weight: 400; src: url('${font(400)}') format('woff2'); }
-  @font-face { font-family: 'Iosevka'; font-weight: 700; src: url('${font(700)}') format('woff2'); }
+  @font-face { font-family: 'Figtree'; font-weight: 800; src: url('${font('figtree-latin-800-normal')}') format('woff2'); }
+  @font-face { font-family: 'Atkinson Hyperlegible'; font-weight: 700; src: url('${font('atkinson-hyperlegible-latin-700-normal')}') format('woff2'); }
   * { margin: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
-    display: flex; flex-direction: column; justify-content: space-between;
+    display: flex; align-items: center; gap: 64px;
     padding: 72px 88px;
-    background-color: #0b0a14;
-    background-image:
-      radial-gradient(3px 3px at 88% 18%, #e8e6f5 50%, transparent 51%),
-      radial-gradient(2px 2px at 79% 36%, #9a97b8 50%, transparent 51%),
-      radial-gradient(4px 4px at 93% 54%, #f2b66d 50%, transparent 51%),
-      radial-gradient(2px 2px at 84% 74%, #9a97b8 50%, transparent 51%),
-      radial-gradient(3px 3px at 96% 86%, #8b7cf6 50%, transparent 51%);
-    background-repeat: no-repeat;
-    font-family: 'Iosevka', monospace; color: #e8e6f5;
-    border-bottom: 8px solid #8b7cf6;
+    background: #fbf8f3; color: #1f2421;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    border-bottom: 12px solid #0f5e57;
   }
-  .brand { font-size: 32px; font-weight: 700; letter-spacing: 0.04em; }
-  .eyebrow { font-size: 30px; color: #5ec8c0; margin-bottom: 28px; }
-  h1 { font-size: 76px; font-weight: 700; line-height: 1.1; max-width: 22ch; }
-  .author { font-size: 30px; color: #9a97b8; }
+  .text { flex: 1; display: flex; flex-direction: column; gap: 28px; }
+  .brand { font-family: 'Figtree', sans-serif; font-size: 34px; font-weight: 800; color: #0f5e57; }
+  .eyebrow { font-size: 26px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0f5e57; }
+  h1 { font-family: 'Figtree', sans-serif; font-size: 72px; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+  img { width: 300px; height: 300px; border-radius: 50%; border: 10px solid #e8f1ee; object-fit: cover; flex: 0 0 auto; }
 </style></head><body>
-  <p class="brand">${escape(t.nav.brand)}</p>
-  <div><p class="eyebrow">${escape(t.hero.eyebrow)}</p><h1>${escape(t.hero.title)}</h1></div>
-  <p class="author">${escape(site.author)}</p>
+  <div class="text">
+    <p class="brand">${escape(site.brand)}</p>
+    <p class="eyebrow">${escape(t.hero.eyebrow)}</p>
+    <h1>${escape(t.hero.title)}</h1>
+  </div>
+  <img src="${photo}" alt="">
 </body></html>`;
 
 const outDir = join(root, 'public/og');
@@ -71,18 +69,18 @@ try {
     writeFileSync(page, template(t));
     const url = pathToFileURL(page).href;
     await send('Page.navigate', { url });
-    // Espera a que cargue la página nueva y su fuente: sin Iosevka la imagen
+    // Espera a que cargue la página nueva y su fuente: sin Figtree la imagen
     // sale con la de respaldo.
     const { result } = await send('Runtime.evaluate', {
       expression: `new Promise((resolve) => {
         const ready = () => location.href === ${JSON.stringify(url)} && document.readyState === 'complete';
-        const wait = () => (ready() ? document.fonts.ready.then(() => resolve(document.fonts.check('700 76px Iosevka'))) : setTimeout(wait, 50));
+        const wait = () => (ready() ? document.fonts.ready.then(() => resolve(document.fonts.check('800 72px Figtree'))) : setTimeout(wait, 50));
         wait();
       })`,
       awaitPromise: true,
       returnByValue: true,
     });
-    if (!result.value) throw new Error(`Iosevka no cargó en ${lang}.html`);
+    if (!result.value) throw new Error(`Figtree no cargó en ${lang}.html`);
     const shot = await send('Page.captureScreenshot', { format: 'png' });
     writeFileSync(join(outDir, `${lang}.png`), Buffer.from(shot.data, 'base64'));
     console.log(`public/og/${lang}.png`);

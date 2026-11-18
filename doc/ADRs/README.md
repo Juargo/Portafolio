@@ -8,6 +8,7 @@ Las decisiones de producto siguen registrándose en las actas de reunión de Obs
 |---|---|---|
 | [0001](0001-usar-pnpm.md) | Usar pnpm en lugar de npm | Aceptada |
 | [0002](0002-avance-de-proyectos-al-compilar.md) | Calcular el avance de proyectos al compilar | Aceptada |
-| [0003](0003-recortar-iosevka.md) | Recortar Iosevka a los caracteres del sitio | Aceptada |
+| [0003](0003-recortar-iosevka.md) | Recortar Iosevka a los caracteres del sitio | Reemplazada por ADR 0006 |
 | [0004](0004-vitest.md) | Usar Vitest para las pruebas | Aceptada |
 | [0005](0005-avance-por-todos-los-milestones.md) | Mostrar el avance de todos los milestones del repositorio | Aceptada (reemplaza en parte a 0002) |
+| [0006](0006-figtree-y-atkinson.md) | Figtree y Atkinson Hyperlegible en lugar de Iosevka | Aceptada (reemplaza a 0003) |
